@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>readlens — Problem Identification</title>
+  <meta name="description" content="Understanding the accessibility and vision impairment challenge in Malaysia.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../src/css/styles.css">
+
+  <meta name="theme-color" content="#10b981">
+</head>
+<body>
+
+  <div id="canvas-container" aria-hidden="true"></div>
+
+  <!-- Top Navigation (injected via JS) -->
+  <header class="top-nav"></header>
+
+  <div class="doc-layout">
+    <!-- Sidebar (injected via JS) -->
+    <nav class="sidebar" aria-label="Documentation sections"></nav>
+    <!-- Sidebar overlay for mobile -->
+    <div class="sidebar-overlay"></div>
+    <!-- Sidebar toggle button for mobile -->
+    <button class="sidebar-toggle" aria-label="Toggle sidebar">&#9776;</button>
+
+    <div class="doc-content">
+
+      <div class="page-header">
+        <h1>Problem Identification</h1>
+        <p>Understanding the <strong>accessibility and vision impairment challenge</strong> in Malaysia — and why <strong>readlens</strong> is needed.</p>
+      </div>
+
+      <!-- Challenge -->
+      <section class="content-section" id="challenge">
+        <h2>The Accessibility Challenge</h2>
+        <div class="split-section">
+          <div class="split-section__content">
+            <p>Visual impairment and myopia are major public health concerns in Malaysia. According to the <strong>National Eye Surveys (2024)</strong>, the prevalence of blindness among adults aged <strong>&ge; 50 years</strong> is <strong>0.6&ndash;1.6 %</strong>, with untreated cataracts and diabetic retinopathy as leading causes.</p>
+            <p>Meanwhile, a systematic review by the <strong>Ministry of Health and IMU University (2026)</strong> found that up to <strong>42.7 %</strong> of Malaysian adolescents experience myopia, with higher rates among females and Chinese Malaysians.</p>
+            <p>Existing assistive technologies&mdash;such as imported smart glasses and handheld readers&mdash;are <strong>cost prohibitive (RM 10,000&ndash;RM 15,000)</strong> and not locally serviceable, leaving many visually impaired Malaysians without practical support.</p>
+          </div>
+          <div class="split-section__media">
+            <img src="blindpeoplewalking.jpg" alt="Accessibility Challenge" loading="lazy">
+          </div>
+        </div>
+      </section>
+
+      <!-- Target Users -->
+      <section class="content-section" id="target-users">
+        <h2>Target Users &amp; Industry Focus</h2>
+        <div class="split-section split-section--reverse">
+          <div class="split-section__content">
+            <p><strong>Primary Users:</strong> Blind and severely visually impaired individuals needing real-time <strong>text-to-speech</strong> and <strong>object identification</strong> assistance.</p>
+            <p><strong>Secondary Users:</strong> Myopic and low-vision users requiring <strong>audio-based feedback</strong> for reading and everyday tasks.</p>
+            <p><strong>Industry Focus:</strong> readlens operates within the <strong>assistive technology and healthcare innovation</strong> sector, addressing the lack of affordable, <strong>AI-powered wearable solutions</strong> for Malaysia's visually impaired community. By integrating <strong>ESP32-S3 + OV5640 camera</strong> with a connected mobile application, readlens enables users to:</p>
+            <ul class="feature-list">
+              <li>Read printed or handwritten text via <strong>OCR</strong> and receive speech feedback.</li>
+              <li>Identify surrounding objects in <strong>real time</strong>.</li>
+              <li>Switch between modes easily using a <strong>tactile button</strong> with audio confirmation.</li>
+              <li>Benefit from <strong>modular, locally sourced</strong> components for easy maintenance and scalability.</li>
+            </ul>
+          </div>
+          <div class="split-section__media">
+            <img src="blindpeoplewithcane.avif" alt="Target Users" loading="lazy">
+          </div>
+        </div>
+      </section>
+
+      <!-- Project Goal -->
+      <section class="content-section" id="project-goal">
+        <h2>Project Goal</h2>
+        <p>readlens is an affordable, <strong>wearable AI smart-glasses system</strong> designed to assist blind and myopic users in daily reading and object identification tasks. It integrates a camera, embedded processing, and a <strong>connected mobile application</strong> to perform text recognition and object identification, providing <strong>real-time spoken feedback</strong> through Bluetooth earphones.</p>
+
+        <h3>Solution Strategy</h3>
+        <ul class="feature-list">
+          <li><strong>ESP32-S3 + OV5640 Camera</strong> &mdash; captures real-time images and streams them to the connected mobile app.</li>
+          <li><strong>readLens Mobile Application</strong> &mdash; processes captured images using AI models (<strong>EasyOCR</strong> for text recognition, <strong>LLaVA</strong> for object identification).</li>
+          <li><strong>Audio Feedback System</strong> &mdash; delivers spoken results and mode confirmations via <strong>Bluetooth earphones</strong>.</li>
+          <li><strong>Button Press Logic</strong> &mdash; tactile push button (GPIO4) controls capture and toggles between <strong>Text Mode</strong> and <strong>Object Mode</strong>, with audio prompts confirming the active mode.</li>
+          <li><strong>Confidence Threshold Decision</strong> &mdash; ensures reliable outputs; unclear results trigger retry prompts (&ldquo;Result unclear, adjust angle&rdquo;).</li>
+          <li><strong>Lightweight Modular Design</strong> &mdash; compact assembly (<strong>&le; 150 g</strong>) with detachable modules for battery, camera, and drivers.</li>
+          <li><strong>Affordable Components</strong> &mdash; built with ESP32-S3, OV5640, Li-Po battery, and Bluetooth drivers available in <strong>Malaysia</strong>.</li>
+        </ul>
+      </section>
+
+      <!-- Global Impact -->
+      <section class="content-section" id="global-impact">
+        <h2>Global Impact Alignment</h2>
+        <p>The readlens system is closely aligned with the <strong>UN Sustainable Development Goal 3 (Good Health and Well-Being)</strong>, specifically <strong>Target 3.8</strong>: Achieve universal health coverage and access to <strong>assistive technologies</strong> for persons with disabilities.</p>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Category</th>
+                <th>readlens Contribution</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Direct Impact</strong></td>
+                <td>Empowers blind and myopic individuals with <strong>independence</strong> through AI-assisted reading and object identification.</td>
+              </tr>
+              <tr>
+                <td><strong>Target Achievement</strong></td>
+                <td>Addresses accessibility gaps in Malaysia by providing a <strong>low-cost, locally manufacturable</strong> assistive device.</td>
+              </tr>
+              <tr>
+                <td><strong>Health Outcome</strong></td>
+                <td>Reduces mental strain, social isolation, and accidents caused by visual impairment through <strong>real-time audio feedback</strong>.</td>
+              </tr>
+              <tr>
+                <td><strong>Alignment</strong></td>
+                <td>Supports Malaysia's <strong>Digital Inclusion and Accessibility Framework (2025&ndash;2030)</strong> by integrating AI into healthcare and assistive technologies.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Broader Societal Benefits</h3>
+        <ul class="feature-list">
+          <li>Enhances <strong>educational access</strong> for visually impaired students through text-to-speech reading.</li>
+          <li>Promotes <strong>safe urban mobility</strong> with obstacle detection and distance alerts.</li>
+          <li>Encourages <strong>local innovation</strong> by using components available in Malaysia's maker ecosystem.</li>
+          <li>Contributes to <strong>inclusive technology development</strong>, aligning with SDG 10: Reduced Inequalities.</li>
+        </ul>
+      </section>
+
+      <!-- Benchmarking -->
+      <section class="content-section" id="benchmarking">
+        <h2>Benchmarking</h2>
+        <p>Comprehensive comparison of readlens against existing assistive solutions across four key categories.</p>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>User Needs / Products</th>
+                <th>Google Lookout App</th>
+                <th>Envision Glasses</th>
+                <th>OrCam MyEye Pro</th>
+                <th style="color: var(--color-emerald-dark);">readlens</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="table-category">
+                <td colspan="5">1. Text Recognition (OCR)</td>
+              </tr>
+              <tr>
+                <td><strong>OCR Engine</strong></td>
+                <td>Google Cloud Vision</td>
+                <td>Envision AI Cloud</td>
+                <td>OrCam AI Offline</td>
+                <td style="font-weight: 700; color: var(--color-emerald-dark);">Smartphone App (Ollama, Llava AI)</td>
+              </tr>
+              <tr>
+                <td><strong>Response Time</strong></td>
+                <td>2&ndash;3 s (cloud latency)</td>
+                <td>2&ndash;3 s (cloud latency)</td>
+                <td>~ 2 s (on-device)</td>
+                <td style="font-weight: 700; color: var(--color-emerald-dark);">&le; 1.5 s (capture &rarr; speech)</td>
+              </tr>
+              <tr>
+                <td><strong>Output Method</strong></td>
+                <td>Audio via phone</td>
+                <td>Audio via earpiece</td>
+                <td>Audio via speaker</td>
+                <td style="font-weight: 700; color: var(--color-emerald-dark);">Speech via earphone drivers (Bluetooth A2DP/SBC)</td>
+              </tr>
+
+              <tr class="table-category">
+                <td colspan="5">2. Object Identification</td>
+              </tr>
+              <tr>
+                <td><strong>Detection Type</strong></td>
+                <td>Cloud AI scene description</td>
+                <td>Cloud AI scene description</td>
+                <td>Offline object database</td>
+                <td style="font-weight: 700; color: var(--color-emerald-dark);">On-device AI + App query chatbot</td>
+              </tr>
+              <tr>
+                <td><strong>Interaction</strong></td>
+                <td>Limited voice commands</td>
+                <td>Limited voice commands</td>
+                <td>Fixed responses</td>
+                <td style="font-weight: 700; color: var(--color-emerald-dark);">User can ask AI chatbot follow-up questions about captured image</td>
+              </tr>
+              <tr>
+                <td><strong>Detection Speed</strong></td>
+                <td>Cloud-dependent (~ 400 ms)</td>
+                <td>Cloud-dependent (~ 300 ms)</td>
+                <td>On-device (~ 200 ms)</td>
+                <td style="font-weight: 700; color: var(--color-emerald-dark);">Instant (sensor trigger + AI app processing)</td>
+              </tr>
+
+              <tr class="table-category">
+                <td colspan="5">3. Accessibility &amp; Usability</td>
+              </tr>
+              <tr>
+                <td><strong>Target Users</strong></td>
+                <td>General users with visual impairment</td>
+                <td>Blind and Low-Vision Users</td>
+                <td>Blind and Low-Vision Users</td>
+                <td style="font-weight: 700; color: var(--color-emerald-dark);">Blind and Low-Vision Users</td>
+              </tr>
+              <tr>
+                <td><strong>Weight</strong></td>
+                <td>Smartphone only</td>
+                <td>~ 200 g</td>
+                <td>~ 180 g</td>
+                <td style="font-weight: 700; color: var(--color-emerald-dark);">&le; 150 g (total device)</td>
+              </tr>
+              <tr>
+                <td><strong>Installation Type</strong></td>
+                <td>App installation</td>
+                <td>Fully integrated</td>
+                <td>Clip-on module</td>
+                <td style="font-weight: 700; color: var(--color-emerald-dark);">Plug-and-play (USB charging + Bluetooth pairing)</td>
+              </tr>
+              <tr>
+                <td><strong>Professional Setup</strong></td>
+                <td>Not required</td>
+                <td>Required for pairing and training</td>
+                <td>Required for calibration</td>
+                <td style="font-weight: 700; color: var(--color-emerald-dark);">Not required</td>
+              </tr>
+
+              <tr class="table-category">
+                <td colspan="5">4. Cost &amp; Maintenance</td>
+              </tr>
+              <tr>
+                <td><strong>Estimated Cost</strong></td>
+                <td>Free app</td>
+                <td>&gt; RM 10,000</td>
+                <td>&gt; RM 15,000</td>
+                <td style="font-weight: 700; color: var(--color-emerald-dark);">&le; RM 300 (BOM target)</td>
+              </tr>
+              <tr>
+                <td><strong>Component Availability</strong></td>
+                <td>Software only</td>
+                <td>Imported only</td>
+                <td>Imported only</td>
+                <td style="font-weight: 700; color: var(--color-emerald-dark);">Local Malaysia market (PAM8403, ESP32-S3, OV5640, earphone drivers)</td>
+              </tr>
+              <tr>
+                <td><strong>Repairability</strong></td>
+                <td>N/A</td>
+                <td>Proprietary hardware</td>
+                <td>Proprietary hardware</td>
+                <td style="font-weight: 700; color: var(--color-emerald-dark);">Modular design (PCB + replaceable modules)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Research -->
+      <section class="content-section" id="research">
+        <h2>Research Validation</h2>
+        <div class="split-section">
+          <div class="split-section__content">
+            <p>readlens is built on a solid scientific foundation. The core logic for <strong>AI-assisted navigation</strong>, obstacle detection, and accessibility is rigorously validated against key <strong>peer-reviewed research papers</strong> and established psychophysiological measures.</p>
+
+            <a href="https://journals.plos.org/plosone/article?id=10.1371%2Fjournal.pone.0299768" target="_blank" rel="noopener noreferrer" class="link-card">Prevalence of visual impairment and its causes in adults aged 50 years and older: Estimates from the National Eye Surveys in Malaysia (PLOS One)</a>
+            <a href="https://visionatlas.iapb.org/country-data/malaysia/" target="_blank" rel="noopener noreferrer" class="link-card">The Value of Vision: The case for investing in eye health (IAPB Vision Atlas)</a>
+            <a href="https://ejournal.usm.my/mjms/article/download/mjms_vol33-no1-2026_2/pdf" target="_blank" rel="noopener noreferrer" class="link-card">Prevalence of Myopia in Children and Adolescents: A Systematic Review of Malaysian Prevalence Studies (USM)</a>
+            <a href="https://files.eric.ed.gov/fulltext/EJ1114558.pdf" target="_blank" rel="noopener noreferrer" class="link-card">Braille Reading Accuracy of Students Who Are Visually Impaired: The Effects of Gender, Age at Vision Loss, and Level of Education</a>
+          </div>
+          <div class="split-section__media">
+            <img src="blindwithbraille.JPEG" alt="Research Validation" loading="lazy">
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <!-- Footer (injected via JS) -->
+  <footer></footer>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="../three-header.js"></script>
+  <script type="module" src="../src/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+{
+  "name": "readlens-website",
+  "version": "1.0.0",
+  "description": "readlens - AI-powered smart glasses for the visually impaired",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^5.0.0"
+  }
+}

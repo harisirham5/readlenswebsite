@@ -1,0 +1,29 @@
+The Accessibility and Vision Impairment Challenge in Malaysia
+Visual impairment and myopia remain major public health concerns in Malaysia. According to the National Eye Surveys (2024), the prevalence of blindness among adults aged ≥ 50 years is 0.6–1.6 %, with untreated cataracts and diabetic retinopathy as leading causes. The IAPB Vision Atlas reports that sight loss continues to rise due to population ageing and limited access to affordable eye care services. Meanwhile, a systematic review by the Ministry of Health and IMU University (2026) found that up to 42.7 % of Malaysian adolescents experience myopia, with higher rates among females and Chinese Malaysians.
+
+These conditions severely restrict independence, mobility, and access to information. Traditional solutions like Braille literacy are difficult to master and not widely adopted, leaving many visually impaired Malaysians without practical support. Existing assistive technologies — such as imported smart glasses and handheld readers — are cost prohibitive (RM 10 000–RM 15 000) and not locally serviceable, creating a gap in affordable accessibility solutions.
+
+👥 Target Users
+Primary: Blind and severely visually impaired individuals needing real‑time text‑to‑speech and object identification assistance.
+
+Secondary: Myopic and low‑vision users requiring audio‑based feedback for reading and everyday tasks.
+
+🏭 Industry Focus
+ReadLens operates within the assistive technology and healthcare innovation sector, addressing the lack of affordable, AI‑powered wearable solutions for Malaysia’s visually impaired community. By integrating ESP32‑S3 + OV5640 camera with a connected mobile application, ReadLens enables users to:
+
+Read printed or handwritten text via OCR and receive speech feedback.
+
+Identify surrounding objects in real time.
+
+Switch between modes easily using a tactile button with audio confirmation.
+
+Benefit from modular, locally sourced components for easy maintenance and scalability.
+
+🧠 Key Update vs. Earlier Draft
+Removed obstacle detection (not part of current scope).
+
+Removed AI chatbot interaction (simplified to audio confirmation + mobile app processing).
+
+Added Braille struggle context to emphasize why ReadLens is necessary.
+
+Highlighted mobile app integration for AI processing.

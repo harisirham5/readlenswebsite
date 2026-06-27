@@ -1,0 +1,20 @@
+DESIGN SPECIFICATION					
+					
+					
+NO.	User Need	Design Attribute	Design Characteristic	Engineering Target	Components
+MUST HAVE					
+1	Object identification	Detection accuracy, processing speed	Ability to correctly identify objects in real time using onboard AI	≥ 90 % accuracy; ≤ 1.5 s response time	OV5640 camera (5MP), ESP32‑S3 MCU, AI model (TensorFlow Lite)
+2	Hands free text recognition (OCR)	OCR accuracy, latency	Ability to recognize printed and handwritten text and convert it to speech	≥ 80 % printed text accuracy; ≥ 70 % handwritten; ≤ 1.0 s latency	OV5640 camera, ESP32‑S3, OCR engine (Gemini API / Tesseract.js)
+3	Audio feedback clarity	Sound quality, latency	Audio output intelligibility and delay between recognition and speech	≥ 85 % intelligibility; ≤ 100 ms delay	Earphone drivers (Bluetooth A2DP/SBC), mini speaker
+SHOULD HAVE					
+4	Comfort & usability	Weight, ergonomics	Device weight and balance suitable for prolonged wear	≤ 150 g total device weight	Lightweight glasses frame, custom PCB, Li‑Po battery
+5	Battery performance	Power consumption, efficiency	Energy usage during active and standby modes	≥ 4 hours active use; ≤ 0.1 mW standby; ≤ 50 mW active	Li‑Po 1200 mAh battery, TP4056 charger
+6	Affordability	Cost efficiency	Total bill of materials (BOM) cost for prototype	≤ RM 300 total cost	Locally sourced components (ESP32‑S3, OV5640, TP4056, earphone drivers)
+7	Connectivity	Bluetooth stability	Maintain reliable link between glasses and smartphone app	≥ 95 % connection uptime; auto‑reconnect ≤ 2 s	Bluetooth 5.0 module (integrated in ESP32‑S3)
+COULD HAVE					
+8	Reliability & safety	Component durability, thermal management	Safe operation under normal temperature and usage	Operating temperature ≤ 45 °C; no overheating during charge	ESP32‑S3, TP4056, heat‑dissipating PCB design
+9	Ease of control	Button responsiveness	Multi‑press logic for mode switching and power control	Short press ≤ 1 s (capture); double press (mode toggle); long press 3 s (sleep); very long press 5 s (shutdown)	Tactile push button, ESP32‑S3 GPIO input, firmware logic
+10	Expandability (future)	Modular design	Ability to upgrade or replace modules	PCB with replaceable camera/audio modules	Modular PCB design, header connectors, replaceable camera/audio modules
+WON'T HAVE					
+11	Complex Analytics: High-level data processing.	Video Streaming: Live feed to a remote server.	Not important now; will be left out to focus on POC	N/A (not implemented in this phase).	
+12	Social Integration: Non-essential features.	Facial Recognition: Identifying strangers in public.	Excluded due to privacy and hardware constraints.	N/A (not implemented in this phase).	

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>readlens — Design Requirements</title>
+  <meta name="description" content="Hardware components, functional requirements, and core assistive features for readlens smart glasses.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../src/css/styles.css">
+
+  <meta name="theme-color" content="#10b981">
+</head>
+<body>
+
+  <div id="canvas-container" aria-hidden="true"></div>
+
+  <!-- Top Navigation (injected via JS) -->
+  <header class="top-nav"></header>
+
+  <div class="doc-layout">
+    <!-- Sidebar (injected via JS) -->
+    <nav class="sidebar" aria-label="Documentation sections"></nav>
+    <div class="sidebar-overlay"></div>
+    <button class="sidebar-toggle" aria-label="Toggle sidebar">&#9776;</button>
+
+    <div class="doc-content">
+
+      <div class="page-header">
+        <h1>Design Requirements</h1>
+        <p><strong>Core assistive features</strong>, functional requirements, and <strong>engineering specifications</strong> for readlens smart glasses.</p>
+      </div>
+
+      <section class="content-section" id="core-features">
+        <h2>Core Assistive Features</h2>
+        <p>Based on validated user needs from interviews and accessibility research, readlens integrates the following <strong>core design features and functionalities</strong> to effectively assist blind and myopic users in navigation and reading tasks across Malaysian environments:</p>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Core Assistive Feature</th>
+                <th>Functionality</th>
+                <th>User Need Addressed</th>
+                <th>Justification</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>1. Dual Mode AI Vision System</strong></td>
+                <td>Real-time image capture via <strong>OV5640 camera</strong>, processed through readlens App for either <strong>OCR</strong> (text recognition) or <strong>object identification</strong>.</td>
+                <td>Users need to read printed text and recognize surrounding objects independently.</td>
+                <td>Enables blind and myopic users to access visual information without external assistance; supports <strong>autonomy and confidence</strong>.</td>
+              </tr>
+              <tr>
+                <td><strong>2. Real-Time Obstacle Detection &amp; Audio Feedback</strong></td>
+                <td>Distance sensor and camera detect obstacles; <strong>ESP32-S3</strong> sends alerts through <strong>PAM8403 amplifier</strong> and earphone drivers.</td>
+                <td>Users require immediate awareness of nearby obstacles to avoid collisions.</td>
+                <td>Provides <strong>safety and spatial awareness</strong>; critical for blind navigation in crowded or unfamiliar areas.</td>
+              </tr>
+              <tr>
+                <td><strong>3. AI Chatbot Interaction</strong></td>
+                <td>Integrated <strong>AI assistant</strong> in readlens App allows users to ask follow-up questions about captured scenes.</td>
+                <td>Users want contextual understanding beyond basic detection (e.g., &ldquo;What&rsquo;s written on the sign?&rdquo; or &ldquo;What object is ahead?&rdquo;)</td>
+                <td>Enhances engagement and comprehension; bridges gap between <strong>assistive hardware and intelligent interpretation</strong>.</td>
+              </tr>
+              <tr>
+                <td><strong>4. Lightweight, Modular Design</strong></td>
+                <td>Compact assembly (<strong>&le; 150 g</strong>) with detachable modules for battery, camera, and amplifier.</td>
+                <td>Users need comfortable, wearable design suitable for long-term use.</td>
+                <td>Ensures <strong>ergonomic fit</strong> and easy maintenance; supports local assembly and repair.</td>
+              </tr>
+              <tr>
+                <td><strong>5. Affordable &amp; Locally Sourced Components</strong></td>
+                <td>Uses <strong>ESP32-S3, OV5640, PAM8403</strong>, and <strong>Li-Po battery</strong> (1000&ndash;1500 mAh) available in Malaysia.</td>
+                <td>Users require cost-effective assistive technology.</td>
+                <td>Reduces dependency on imported devices (e.g., <strong>OrCam, Envision</strong>); promotes accessibility and local innovation.</td>
+              </tr>
+              <tr>
+                <td><strong>6. Audio Confirmation &amp; Feedback</strong></td>
+                <td><strong>ESP32-S3</strong> provides spoken prompts for mode switching (&ldquo;Text mode activated&rdquo; / &ldquo;Object mode activated&rdquo;) and delivers recognition results via <strong>Bluetooth earphones</strong>.</td>
+                <td>Users require clear, immediate feedback to know which mode is active and to understand recognition results.</td>
+                <td><strong>Audio-only feedback</strong> ensures accessibility for blind users; eliminates reliance on LEDs or displays.</td>
+              </tr>
+              <tr>
+                <td><strong>7. Confidence Threshold Decision</strong></td>
+                <td>Recognition results compared against accuracy thresholds (<strong>&ge; 80% text, &ge; 90% object</strong>); unclear results prompt retry.</td>
+                <td>Users need reliable outputs and guidance when recognition is uncertain.</td>
+                <td>Prevents misinformation; maintains <strong>trust in device performance</strong>.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="content-section" id="design-specification">
+        <h2>Design Specification</h2>
+        <p>Detailed <strong>engineering targets</strong> and component mapping for each user need, organized by priority tier:</p>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>No.</th>
+                <th>User Need</th>
+                <th>Design Attribute</th>
+                <th>Design Characteristic</th>
+                <th>Engineering Target</th>
+                <th>Components</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="table-category">
+                <td colspan="6">MUST HAVE</td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>Object Identification</td>
+                <td>Detection accuracy, processing speed</td>
+                <td>Ability to correctly identify objects in real time using <strong>onboard AI</strong></td>
+                <td><strong>&ge; 90% accuracy; &le; 1.5 s response</strong></td>
+                <td>OV5640 camera (5MP), ESP32-S3 MCU, AI model (TensorFlow Lite)</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>Hands-free Text Recognition (OCR)</td>
+                <td>OCR accuracy, latency</td>
+                <td>Ability to recognize printed and handwritten text and convert it to speech</td>
+                <td><strong>&ge; 80% printed; &ge; 70% handwritten; &le; 1.0 s latency</strong></td>
+                <td>OV5640 camera, ESP32-S3, OCR engine (Gemini API / Tesseract.js)</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>Audio Feedback Clarity</td>
+                <td>Sound quality, latency</td>
+                <td>Audio output intelligibility and delay between recognition and speech</td>
+                <td><strong>&ge; 85% intelligibility; &le; 100 ms delay</strong></td>
+                <td>Earphone drivers (Bluetooth A2DP/SBC), mini speaker</td>
+              </tr>
+              <tr class="table-category">
+                <td colspan="6">SHOULD HAVE</td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>Comfort &amp; Usability</td>
+                <td>Weight, ergonomics</td>
+                <td>Device weight and balance suitable for prolonged wear</td>
+                <td><strong>&le; 150 g total device weight</strong></td>
+                <td>Lightweight glasses frame, custom PCB, Li-Po battery</td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td>Battery Performance</td>
+                <td>Power consumption, efficiency</td>
+                <td>Energy usage during active and standby modes</td>
+                <td><strong>&ge; 4 h active; &le; 0.1 mW standby; &le; 50 mW active</strong></td>
+                <td>Li-Po 1200 mAh battery, TP4056 charger</td>
+              </tr>
+              <tr>
+                <td>6</td>
+                <td>Affordability</td>
+                <td>Cost efficiency</td>
+                <td>Total <strong>bill of materials (BOM)</strong> cost for prototype</td>
+                <td><strong>&le; RM 300 total cost</strong></td>
+                <td>Locally sourced components (ESP32-S3, OV5640, TP4056, earphone drivers)</td>
+              </tr>
+              <tr>
+                <td>7</td>
+                <td>Connectivity</td>
+                <td>Bluetooth stability</td>
+                <td>Maintain reliable link between glasses and smartphone app</td>
+                <td><strong>&ge; 95% uptime; auto-reconnect &le; 2 s</strong></td>
+                <td>Bluetooth 5.0 module (integrated in ESP32-S3)</td>
+              </tr>
+              <tr class="table-category">
+                <td colspan="6">COULD HAVE</td>
+              </tr>
+              <tr>
+                <td>8</td>
+                <td>Reliability &amp; Safety</td>
+                <td>Component durability, thermal management</td>
+                <td>Safe operation under normal temperature and usage</td>
+                <td><strong>Operating temp &le; 45&deg;C; no overheating during charge</strong></td>
+                <td>ESP32-S3, TP4056, heat-dissipating PCB design</td>
+              </tr>
+              <tr>
+                <td>9</td>
+                <td>Ease of Control</td>
+                <td>Button responsiveness</td>
+                <td>Multi-press logic for mode switching and power control</td>
+                <td><strong>Short press &le; 1 s (capture); double press (mode toggle); long press 3 s (sleep); very long press 5 s (shutdown)</strong></td>
+                <td>Tactile push button, ESP32-S3 GPIO input, firmware logic</td>
+              </tr>
+              <tr>
+                <td>10</td>
+                <td>Expandability (future)</td>
+                <td>Modular design</td>
+                <td>Ability to upgrade or replace modules</td>
+                <td><strong>PCB with replaceable camera/audio modules</strong></td>
+                <td>Modular PCB design, header connectors, replaceable camera/audio modules</td>
+              </tr>
+              <tr class="table-category">
+                <td colspan="6">WON'T HAVE</td>
+              </tr>
+              <tr>
+                <td>11</td>
+                <td>Complex Analytics</td>
+                <td>High-level data processing, video streaming</td>
+                <td>Not important now; will be left out to focus on <strong>POC</strong></td>
+                <td>N/A (not implemented in this phase)</td>
+                <td>&mdash;</td>
+              </tr>
+              <tr>
+                <td>12</td>
+                <td>Social Integration</td>
+                <td>Facial recognition, identifying strangers in public</td>
+                <td>Excluded due to <strong>privacy and hardware constraints</strong></td>
+                <td>N/A (not implemented in this phase)</td>
+                <td>&mdash;</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <!-- Footer (injected via JS) -->
+  <footer></footer>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="../three-header.js"></script>
+  <script type="module" src="../src/js/main.js"></script>
+</body>
+</html>

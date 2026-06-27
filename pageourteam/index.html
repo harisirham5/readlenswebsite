@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>readlens — Our Team</title>
+  <meta name="description" content="Meet the team behind the readlens smart glasses project.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../src/css/styles.css">
+
+  <meta name="theme-color" content="#10b981">
+</head>
+<body>
+
+  <div id="canvas-container" aria-hidden="true"></div>
+
+  <!-- Top Navigation (injected via JS) -->
+  <header class="top-nav"></header>
+
+  <div class="doc-layout">
+    <div class="doc-content doc-content--full">
+
+      <div class="page-header">
+        <h1>Meet the Team</h1>
+        <p>The innovators behind <strong>readlens</strong> — a multidisciplinary team of engineers, developers, and designers.</p>
+      </div>
+
+      <div class="team-grid">
+
+        <div class="team-card reveal">
+          <div class="team-avatar">
+            <img src="Hariz.jpeg" alt="Hariz" loading="lazy">
+          </div>
+          <h3 class="team-name">Hariz</h3>
+          <p class="team-role">Project Lead &amp; System Integrator</p>
+          <p class="team-desc">Oversees the entire development process, ensuring all <strong>hardware and software components</strong> work seamlessly together. Responsible for project planning, documentation, and aligning the design with <strong>user needs and accessibility goals</strong>.</p>
+        </div>
+
+        <div class="team-card reveal">
+          <div class="team-avatar">
+            <img src="Irham.jpeg" alt="Irham" loading="lazy">
+          </div>
+          <h3 class="team-name">Irham</h3>
+          <p class="team-role">AI &amp; Software Developer</p>
+          <p class="team-desc">Designs and implements the <strong>readlens smartphone app</strong> and AI chatbot. Handles image processing for <strong>OCR and object detection</strong>, Bluetooth communication with the ESP32-S3, and ensures smooth user interaction through the app interface.</p>
+        </div>
+
+        <div class="team-card reveal">
+          <div class="team-avatar">
+            <img src="Adam.jpeg" alt="Adam" loading="lazy">
+          </div>
+          <h3 class="team-name">Adam</h3>
+          <p class="team-role">Hardware &amp; Circuit Designer</p>
+          <p class="team-desc">Develops the <strong>electronic architecture</strong> of the smart glasses, including the ESP32-S3 microcontroller, OV5640 camera, distance sensor, TP4056 charging module, AMS1117-3.3V regulator, and Li-Po battery integration. Focuses on <strong>power efficiency and compact design</strong>.</p>
+        </div>
+
+        <div class="team-card reveal">
+          <div class="team-avatar">
+            <img src="Amir.jpeg" alt="Amir" loading="lazy">
+          </div>
+          <h3 class="team-name">Amir</h3>
+          <p class="team-role">Audio &amp; User Experience Engineer</p>
+          <p class="team-desc">Optimizes the <strong>audio feedback system</strong> using micro earphone speaker drivers. Ensures clear, low-latency sound output and comfortable wearability for blind and myopic users. Works closely with the design team to refine <strong>ergonomics and usability</strong>.</p>
+        </div>
+
+        <div class="team-card reveal" style="grid-column: 1 / -1; max-width: 50%; margin: 0 auto;">
+          <div class="team-avatar">
+            <img src="Haziq.jpeg" alt="Haziq" loading="lazy">
+          </div>
+          <h3 class="team-name">Haziq</h3>
+          <p class="team-role">Testing &amp; Validation Specialist</p>
+          <p class="team-desc">Conducts <strong>functional, performance, and user-based testing</strong> to validate OCR accuracy, obstacle detection reliability, and overall system responsiveness. Collects feedback from visually impaired users and refines the design for <strong>real-world application</strong>.</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer (injected via JS) -->
+  <footer></footer>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="../three-header.js"></script>
+  <script type="module" src="../src/js/main.js"></script>
+</body>
+</html>

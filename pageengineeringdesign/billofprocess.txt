@@ -1,0 +1,18 @@
+Billing of Process					
+					
+Part No.	Enablers / Components 	Estimated Cost (RM)	Manufacturing Process	Functionality	Category
+1	ESP32‑S3 microcontroller	40.68	Purchase	Main processor, Bluetooth A2DP/SBC, I²S audio output	Hardware
+2	OV5640 camera module		Purchase	Captures images for OCR/Object ID	Hardware
+3	Micro earphone speaker units (16–32 Ω)	6.02	Purchase	Lightweight audio output	Hardware
+4	Lithium‑ion battery (1200 mAh)	13.99	Purchase	Power source	Hardware
+5	TP4056 charging module	3.00	Purchase	Safe battery charging (USB/Type‑C)	Hardware
+6	Tactile push button	0.33	Purchase	User input trigger	Hardware
+7	Glasses frame housing		Purchase	Embeds electronics	Hardware
+8	PCB/perfboard + wiring	4.39	Purchase	Mounting and connections	Hardware
+9	DC3V Mini Vibration Motors 10000rpm 1030 Flat Coin	4.00	Purchase	Vibrations	Hardware
+10	ESP32‑S3 firmware (Arduino IDE / ESP‑IDF)	-	To code	Handles camera trigger, Bluetooth audio, button input	Software
+11	Smartphone app (JS framework: React Native/Ionic)	-	To code	OCR (Gemini/Tesseract.js), TTS, mode control	Software
+12	OCR engine (Gemini API priority, fallback Tesseract.js/EasyOCR)	-	To code	Extracts text from images	Software
+13	TTS engine (Web Speech API / native TTS)	-	To code	Converts text into speech	Software
+14	Bluetooth A2DP/SBC stack	-	To code	Audio streaming protocol	Software
+	Total	72.41			

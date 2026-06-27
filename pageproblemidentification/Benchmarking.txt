@@ -1,0 +1,18 @@
+User Needs / Products	Google Lookout App	Envision Glasses	OrCam MyEye Pro	readlens
+TEXT RECOGNITION (OCR)				
+OCR Engine	Google Cloud Vision	Envision AI Cloud	OrCam AI Offline	Smartphone App (Ollama, Llava AI)
+Response Time	2–3 s (cloud latency)	2–3 s (cloud latency)	~ 2 s (on‑device)	≤ 1.5 s (capture → speech)
+Output Method	Audio via phone	Audio via earpiece	Audio via speaker	Speech via earphone drivers (Bluetooth A2DP/SBC)
+OBJECT IDENTIFICATION				
+Detection Type	Cloud AI scene description	Cloud AI scene description	Offline object database	On‑device AI + App query chatbot
+Interaction	Limited voice commands	Limited voice commands	Fixed responses	User can ask AI chatbot follow‑up questions about captured image
+Detection Speed	Cloud‑dependent (~ 400 ms)	Cloud‑dependent (~ 300 ms)	On‑device (~ 200 ms)	Instant (sensor trigger + AI app processing)
+ACCESSIBILITY & USABILITY				
+Target Users	General users with visual impairment	Blind and Low‑Vision Users	Blind and Low‑Vision Users	Blind and Low‑Vision Users
+Weight	Smartphone only	~ 200 g	~ 180 g	≤ 150 g (total device)
+Installation Type	App installation	Fully integrated	Clip‑on module	Plug‑and‑play (USB charging + Bluetooth pairing)
+Professional Setup	Not required	Required for pairing and training	Required for calibration	Not required
+COST & MAINTENANCE				
+Estimated Cost	Free app	> RM 10 000	> RM 15 000	≤ RM 300 (BOM target)
+Component Availability	Software only	Imported only	Imported only	Local Malaysia market (PAM8403, ESP32‑S3, OV5640, earphone drivers)
+Repairability	N/A	Proprietary hardware	Proprietary hardware	Modular design (PCB + replaceable modules)

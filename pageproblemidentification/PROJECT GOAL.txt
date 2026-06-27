@@ -1,0 +1,17 @@
+✔ Project Goal
+ReadLens is an affordable, wearable AI smart‑glasses system designed to assist blind and myopic users in daily reading and object identification tasks. It integrates a camera, embedded processing, and a connected mobile application to perform text recognition and object identification, providing real‑time spoken feedback through Bluetooth earphones. By bypassing the challenges of Braille literacy, ReadLens offers instant accessibility without specialized training.
+
+🛠️ Solution Strategy
+📷 ESP32‑S3 + OV5640 Camera — captures real‑time images and streams them to the connected mobile app.
+
+📱 ReadLens Mobile Application — processes captured images using AI models (EasyOCR for text recognition, LLaVA for object identification).
+
+🔊 Audio Feedback System — delivers spoken results and mode confirmations via Bluetooth earphones.
+
+🎛️ Button Press Logic — tactile push button (GPIO4) controls capture and toggles between Text Mode and Object Mode, with audio prompts confirming the active mode.
+
+🧠 Confidence Threshold Decision — ensures reliable outputs; unclear results trigger retry prompts (“Result unclear, adjust angle”).
+
+⚙️ Lightweight Modular Design — compact assembly (≤ 150 g) with detachable modules for battery, camera, and drivers, supporting local assembly and repair.
+
+💡 Affordable Components — built with ESP32‑S3, OV5640, Li‑Po battery, and Bluetooth drivers available in Malaysia, reducing dependency on costly imported devices.

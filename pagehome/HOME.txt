@@ -1,0 +1,4 @@
+ Home
+Malaysia faces a growing accessibility challenge: over 300,000 citizens live with severe visual impairment, and myopia affects nearly one‑third of the population. Traditional solutions such as Braille literacy are difficult to master and not widely adopted, while imported assistive devices remain prohibitively expensive (RM 10,000–15,000) and not locally serviceable.
+
+ReadLens directly addresses this gap by providing an affordable, AI‑powered smart‑glasses system for blind and myopic users. It combines real‑time text recognition and object identification with audio confirmation and spoken feedback, enabling users to access information instantly and independently. By integrating locally sourced components and a connected mobile application, ReadLens promotes digital inclusion, accessibility, and innovation within Malaysia’s healthcare technology ecosystem. 

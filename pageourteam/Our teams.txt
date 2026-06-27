@@ -1,0 +1,15 @@
+👥 Our Teams
+👨‍💻 Project Lead & System Integrator (Hariz)  
+Oversees the entire development process, ensuring hardware (ESP32‑S3, OV5640 camera, Li‑Po battery) and software (mobile app + AI models) work seamlessly together. Responsible for project planning, documentation, and aligning the design with accessibility goals and user needs.
+
+🧠 AI & Mobile App Developer (Irham)  
+Designs and implements the ReadLens smartphone application. Handles image processing for OCR (EasyOCR) and object detection (LLaVA), manages Bluetooth communication with the ESP32‑S3, and ensures smooth user interaction through audio feedback and mode confirmation.
+
+⚙️ Hardware & Circuit Designer (Adam)  
+Develops the electronic architecture of the smart glasses, including the ESP32‑S3 microcontroller, OV5640 camera, TP4056 charging module, and Li‑Po battery integration. Focuses on compact design, power efficiency, and modular assembly for local repair.
+
+🎧 Audio & User Experience Engineer (Amir)  
+Optimizes the audio feedback system using Bluetooth earphone drivers. Ensures clear, low‑latency spoken output and comfortable wearability for blind and myopic users. Works closely with the design team to refine ergonomics and usability.
+
+🔍 Testing & Validation Specialist (Haziq)  
+Conducts functional, performance, and user‑based testing to validate OCR accuracy, object identification reliability, and overall system responsiveness. Collects feedback from visually impaired users and refines the design for real‑world application.

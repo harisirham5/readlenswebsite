@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>readlens — Engineering Design</title>
+  <meta name="description" content="Engineering design, architecture, and timeline of the readlens assistive navigation system.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../src/css/styles.css">
+
+  <meta name="theme-color" content="#10b981">
+</head>
+<body>
+
+  <div id="canvas-container" aria-hidden="true"></div>
+
+  <!-- Top Navigation (injected via JS) -->
+  <header class="top-nav"></header>
+
+  <div class="doc-layout">
+    <!-- Sidebar (injected via JS) -->
+    <nav class="sidebar" aria-label="Documentation sections"></nav>
+    <div class="sidebar-overlay"></div>
+    <button class="sidebar-toggle" aria-label="Toggle sidebar">&#9776;</button>
+
+    <div class="doc-content">
+
+      <div class="page-header">
+        <h1>Engineering Design</h1>
+        <p><strong>System architecture</strong>, bill of processes, and hardware design for the <strong>readlens smart glasses</strong>.</p>
+      </div>
+
+      <section class="content-section" id="bill-of-process">
+        <h2>Bill of Process</h2>
+        <p>The manufacturing and assembly process is optimized for <strong>cost-efficiency</strong> while maintaining high reliability for the readlens smart glasses hardware.</p>
+        <div class="img-container">
+          <img src="biilingofprocess.png" alt="Bill of Process" loading="lazy" onerror="this.style.display='none'">
+        </div>
+
+        <h3>Bill of Materials</h3>
+        <p>Complete component breakdown with sourcing, cost, and functional mapping. Total BOM target: <strong>RM 72.41</strong>.</p>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Part No.</th>
+                <th>Enablers / Components</th>
+                <th>Est. Cost (RM)</th>
+                <th>Process</th>
+                <th>Functionality</th>
+                <th>Category</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td><strong>ESP32-S3 microcontroller</strong></td>
+                <td>40.68</td>
+                <td>Purchase</td>
+                <td>Main processor, <strong>Bluetooth A2DP/SBC</strong>, I&sup2;S audio output</td>
+                <td><span class="badge badge-hardware">Hardware</span></td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td><strong>OV5640 camera module</strong></td>
+                <td>&mdash;</td>
+                <td>Purchase</td>
+                <td>Captures images for <strong>OCR / Object ID</strong></td>
+                <td><span class="badge badge-hardware">Hardware</span></td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td><strong>Micro earphone speaker units (16&ndash;32 &Omega;)</strong></td>
+                <td>6.02</td>
+                <td>Purchase</td>
+                <td>Lightweight audio output</td>
+                <td><span class="badge badge-hardware">Hardware</span></td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td><strong>Lithium-ion battery (1200 mAh)</strong></td>
+                <td>13.99</td>
+                <td>Purchase</td>
+                <td>Power source</td>
+                <td><span class="badge badge-hardware">Hardware</span></td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td><strong>TP4056 charging module</strong></td>
+                <td>3.00</td>
+                <td>Purchase</td>
+                <td>Safe battery charging (<strong>USB/Type-C</strong>)</td>
+                <td><span class="badge badge-hardware">Hardware</span></td>
+              </tr>
+              <tr>
+                <td>6</td>
+                <td><strong>Tactile push button</strong></td>
+                <td>0.33</td>
+                <td>Purchase</td>
+                <td>User input trigger</td>
+                <td><span class="badge badge-hardware">Hardware</span></td>
+              </tr>
+              <tr>
+                <td>7</td>
+                <td><strong>Glasses frame housing</strong></td>
+                <td>&mdash;</td>
+                <td>Purchase</td>
+                <td>Embeds electronics</td>
+                <td><span class="badge badge-hardware">Hardware</span></td>
+              </tr>
+              <tr>
+                <td>8</td>
+                <td><strong>PCB / perfboard + wiring</strong></td>
+                <td>4.39</td>
+                <td>Purchase</td>
+                <td>Mounting and connections</td>
+                <td><span class="badge badge-hardware">Hardware</span></td>
+              </tr>
+              <tr>
+                <td>9</td>
+                <td><strong>DC3V Mini Vibration Motors 10000rpm</strong></td>
+                <td>4.00</td>
+                <td>Purchase</td>
+                <td><strong>Haptic vibration</strong> alerts</td>
+                <td><span class="badge badge-hardware">Hardware</span></td>
+              </tr>
+              <tr class="table-category">
+                <td colspan="6">Software</td>
+              </tr>
+              <tr>
+                <td>10</td>
+                <td><strong>ESP32-S3 firmware</strong> (Arduino IDE / ESP-IDF)</td>
+                <td>&mdash;</td>
+                <td>Code</td>
+                <td>Handles camera trigger, Bluetooth audio, button input</td>
+                <td><span class="badge badge-software">Software</span></td>
+              </tr>
+              <tr>
+                <td>11</td>
+                <td><strong>Smartphone app</strong> (React Native / Ionic)</td>
+                <td>&mdash;</td>
+                <td>Code</td>
+                <td><strong>OCR</strong> (Gemini/Tesseract.js), <strong>TTS</strong>, mode control</td>
+                <td><span class="badge badge-software">Software</span></td>
+              </tr>
+              <tr>
+                <td>12</td>
+                <td><strong>OCR engine</strong> (Gemini API priority, fallback Tesseract.js/EasyOCR)</td>
+                <td>&mdash;</td>
+                <td>Code</td>
+                <td>Extracts text from images</td>
+                <td><span class="badge badge-software">Software</span></td>
+              </tr>
+              <tr>
+                <td>13</td>
+                <td><strong>TTS engine</strong> (Web Speech API / native TTS)</td>
+                <td>&mdash;</td>
+                <td>Code</td>
+                <td>Converts text into speech</td>
+                <td><span class="badge badge-software">Software</span></td>
+              </tr>
+              <tr>
+                <td>14</td>
+                <td><strong>Bluetooth A2DP/SBC stack</strong></td>
+                <td>&mdash;</td>
+                <td>Code</td>
+                <td>Audio streaming protocol</td>
+                <td><span class="badge badge-software">Software</span></td>
+              </tr>
+              <tr class="table-total-row">
+                <td colspan="2">Total</td>
+                <td>72.41</td>
+                <td colspan="3"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="content-section" id="system-flowchart">
+        <h2>System Flowchart</h2>
+        <p>The logical flow of the system, from continuous <strong>environmental scanning</strong> via the camera module to data processing and alert activation. The system uses a <strong>microcontroller</strong> to analyze obstacle distances in real-time and capture images for <strong>AI text-recognition</strong>.</p>
+        <div class="img-container">
+          <img src="flowchart.png" alt="System Flowchart" loading="lazy" onerror="this.style.display='none'">
+        </div>
+      </section>
+
+      <section class="content-section" id="design-sketch">
+        <h2>Design Sketch</h2>
+        <p>The wearable form factor is optimized for an <strong>unobtrusive, lightweight</strong> presence. It is designed to be comfortably worn by blind and myopic users for extended periods without causing physical strain, seamlessly integrating the <strong>camera and sensors</strong>.</p>
+        <div class="img-container">
+          <img src="../pagedesignrequirement/designsketch.png" alt="Design Sketch" loading="lazy" onerror="this.style.display='none'">
+        </div>
+      </section>
+
+      <section class="content-section" id="circuit-diagram">
+        <h2>Circuit Diagram</h2>
+        <p>The hardware architecture leverages a robust <strong>ESP32-S3 microcontroller</strong> capable of local processing and <strong>Bluetooth communication</strong>, interconnected with the <strong>OV5640 camera sensor</strong>, distance sensors, and the <strong>PAM8403 audio amplifier</strong> module.</p>
+        <div class="img-container">
+          <img src="../pagedesignrequirement/circuit diagram1.png" alt="Circuit Diagram" loading="lazy" onerror="this.style.display='none'">
+        </div>
+      </section>
+
+      <section class="content-section" id="project-timeline">
+        <h2>Project Timeline</h2>
+        <p>Interactive <strong>14-week project schedule</strong> tracking the <strong>research, prototyping, and deployment</strong> phases of the readlens system. Hover over bars for task details, or use the filter buttons to view specific phases.</p>
+
+        <!-- Stats -->
+        <div class="gc-stats">
+          <div class="gc-stat"><div class="gc-stat-num">14</div><div class="gc-stat-label">Weeks Total</div></div>
+          <div class="gc-stat"><div class="gc-stat-num">5</div><div class="gc-stat-label">Phases</div></div>
+          <div class="gc-stat"><div class="gc-stat-num">19</div><div class="gc-stat-label">Tasks</div></div>
+          <div class="gc-stat"><div class="gc-stat-num">5</div><div class="gc-stat-label">Members</div></div>
+        </div>
+
+        <!-- Controls -->
+        <div class="gc-controls">
+          <span class="gc-filter-label">Filter:</span>
+          <button class="gc-filter-btn active" data-filter="all">All Phases</button>
+          <button class="gc-filter-btn" data-filter="Problem Identification">Problem ID</button>
+          <button class="gc-filter-btn" data-filter="Design Requirements">Design Req.</button>
+          <button class="gc-filter-btn" data-filter="Solution Design">Solution</button>
+          <button class="gc-filter-btn" data-filter="Design Analysis">Analysis</button>
+          <button class="gc-filter-btn" data-filter="Prototyping">Prototyping</button>
+          <button class="gc-filter-btn" data-filter="Validation">Validation</button>
+          <div class="gc-search-wrap">
+            <span class="gc-search-icon">&#8981;</span>
+            <input class="gc-search-input" type="text" id="gc-search-input" placeholder="Search tasks&hellip;">
+          </div>
+        </div>
+
+        <!-- Legend -->
+        <div class="gc-legend">
+          <div class="gc-legend-item"><div class="gc-legend-swatch bar"></div>Task duration</div>
+          <div class="gc-legend-item"><div class="gc-legend-swatch cat"></div>Phase group</div>
+          <span style="font-size:13px;color:var(--color-text-faint);margin-left:8px;">&#8599; Click any task bar for details</span>
+        </div>
+
+        <!-- Chart -->
+        <div class="gc-chart-container">
+          <div class="gc-chart-scroll" id="gc-chart-scroll">
+            <table id="gc-table">
+              <thead>
+                <tr class="gc-thead">
+                  <th class="gc-th-label">Task</th>
+                  <th class="gc-th-week">W1</th><th class="gc-th-week">W2</th><th class="gc-th-week">W3</th>
+                  <th class="gc-th-week">W4</th><th class="gc-th-week">W5</th><th class="gc-th-week">W6</th>
+                  <th class="gc-th-week">W7</th><th class="gc-th-week">W8</th><th class="gc-th-week">W9</th>
+                  <th class="gc-th-week">W10</th><th class="gc-th-week">W11</th><th class="gc-th-week">W12</th>
+                  <th class="gc-th-week">W13</th><th class="gc-th-week">W14</th>
+                </tr>
+              </thead>
+              <tbody id="gc-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Tooltip -->
+        <div class="gc-tooltip" id="gc-tooltip">
+          <div class="gc-tt-task" id="gc-tt-task"></div>
+          <div class="gc-tt-pic" id="gc-tt-pic"></div>
+          <div class="gc-tt-weeks" id="gc-tt-weeks"></div>
+        </div>
+
+        <!-- Detail Panel -->
+        <div class="gc-panel" id="gc-panel">
+          <button class="gc-panel-close" id="gc-panel-close" aria-label="Close panel">&#10005;</button>
+          <div>
+            <div class="gc-panel-phase" id="gc-panel-phase">Phase</div>
+            <div class="gc-panel-task" id="gc-panel-task">Task name</div>
+          </div>
+          <div class="gc-panel-divider"></div>
+          <div class="gc-panel-section">
+            <div class="gc-panel-label">Team Members</div>
+            <div class="gc-chips" id="gc-panel-chips"></div>
+          </div>
+          <div class="gc-panel-section">
+            <div class="gc-panel-label">Duration</div>
+            <div class="gc-panel-val" id="gc-panel-dur"></div>
+          </div>
+          <div class="gc-panel-section">
+            <div class="gc-panel-label">Weeks</div>
+            <div class="gc-wks" id="gc-panel-wks"></div>
+          </div>
+          <div class="gc-panel-divider"></div>
+          <div>
+            <div class="gc-progress-label">
+              <span>Overall project progress</span>
+              <span id="gc-panel-pct">0%</span>
+            </div>
+            <div class="gc-progress-track"><div class="gc-progress-fill" id="gc-panel-prog" style="width:0%"></div></div>
+          </div>
+        </div>
+
+        <script>
+        (function() {
+          var WEEKS = 14;
+          var rows = [
+            {cat:true,  phase:"Problem Identification"},
+            {label:"Analyze user goals and operational workflows", pic:"All team members",     phase:"Problem Identification", s:1, e:1},
+            {label:"Getting user needs",                           pic:"Hariz",                phase:"Problem Identification", s:2, e:3},
+            {label:"Conduct user interviews for deeper insights",  pic:"Haziq, Amir",          phase:"Problem Identification", s:3, e:4},
+            {cat:true,  phase:"Design Requirements"},
+            {label:"Determine essential design features based on user needs", pic:"Irham",     phase:"Design Requirements",    s:4, e:6},
+            {label:"Develop design specification table",           pic:"Adam, Hariz, Irham",   phase:"Design Requirements",    s:5, e:7},
+            {cat:true,  phase:"Solution Design"},
+            {label:"Design concepts and ideas for each subsystem", pic:"Haziq, Hariz",         phase:"Solution Design",        s:6, e:8},
+            {label:"Design Sketch",                                pic:"Adam",                 phase:"Solution Design",        s:5, e:6},
+            {label:"Bill of Process",                              pic:"Irham",                phase:"Solution Design",        s:6, e:7},
+            {label:"Prototype Mockup",                             pic:"All team members",     phase:"Solution Design",        s:7, e:8},
+            {cat:true,  phase:"Design Analysis"},
+            {label:"Analyze component feasibility",                pic:"Amir, Adam, Hariz",    phase:"Design Analysis",        s:8, e:8},
+            {label:"Performance simulation and latency testing",   pic:"Irham, Haziq",         phase:"Design Analysis",        s:8, e:9},
+            {label:"Review design trade-offs",                     pic:"Irham, Hariz",         phase:"Design Analysis",        s:8, e:9},
+            {label:"Finalize design improvements",                 pic:"Hariz",                phase:"Design Analysis",        s:9, e:10},
+            {cat:true,  phase:"Prototyping"},
+            {label:"Assemble hardware prototype",                  pic:"All team members",     phase:"Prototyping",            s:9,  e:9},
+            {label:"Integrate firmware and app connectivity",      pic:"Irham, Hariz",         phase:"Prototyping",            s:9,  e:9},
+            {label:"Implement audio feedback and distance alert",  pic:"Adam, Haziq",          phase:"Prototyping",            s:10, e:10},
+            {label:"Document assembly and wiring layout",          pic:"Irham",                phase:"Prototyping",            s:10, e:10},
+            {cat:true,  phase:"Validation"},
+            {label:"Testing & Validation",                         pic:"All team members",     phase:"Validation",             s:11, e:14}
+          ];
+
+          var tbody = document.getElementById("gc-tbody");
+          var tooltip = document.getElementById("gc-tooltip");
+          var panel = document.getElementById("gc-panel");
+          var currentPhase = "all";
+          var activeRow = null;
+          var ti = 0;
+
+          rows.forEach(function(row) {
+            var tr = document.createElement("tr");
+            tr.dataset.phase = row.phase || "";
+
+            if (row.cat) {
+              tr.className = "gc-cat-row";
+              tr.dataset.catname = row.phase;
+              var td = document.createElement("td");
+              td.className = "gc-td-label";
+              td.colSpan = WEEKS + 1;
+              td.innerHTML = '<span class="gc-cat-label">' + row.phase + '</span>';
+              tr.appendChild(td);
+            } else {
+              tr.className = "gc-data-row";
+              tr.dataset.label = row.label.toLowerCase();
+              tr.dataset.rowPhase = row.phase;
+              tr.dataset.rowLabel = row.label;
+              tr.dataset.rowPic = row.pic;
+              tr.dataset.rowS = row.s;
+              tr.dataset.rowE = row.e;
+
+              var tdL = document.createElement("td");
+              tdL.className = "gc-td-label";
+              tdL.innerHTML = '<div class="gc-label-main">' + row.label + '</div><div class="gc-label-pic">PIC: ' + row.pic + '</div>';
+              tr.appendChild(tdL);
+
+              var delay = ti * 0.05;
+              for (var w = 1; w <= WEEKS; w++) {
+                var td = document.createElement("td");
+                td.className = "gc-td-week";
+                td.dataset.week = w;
+                if (w >= row.s && w <= row.e) {
+                  var bar = document.createElement("div");
+                  bar.className = "gc-bar";
+                  bar.style.transitionDelay = (delay + (w - row.s) * 0.03) + "s";
+                  bar.style.setProperty("--gc-sd", delay + "s");
+                  td.appendChild(bar);
+                }
+                tr.appendChild(td);
+              }
+
+              tr.addEventListener("click", function(t) { return function() { openPanel(t); }; }(tr));
+              tr.addEventListener("mousemove", function(r) { return function(e) {
+                document.getElementById("gc-tt-task").textContent = r.label;
+                document.getElementById("gc-tt-pic").textContent = "PIC: " + r.pic;
+                document.getElementById("gc-tt-weeks").textContent = "Weeks " + r.s + "–" + r.e + " · " + (r.e - r.s + 1) + " week" + (r.e - r.s === 0 ? "" : "s");
+                tooltip.style.left = (e.clientX + 14) + "px";
+                tooltip.style.top  = (e.clientY - 10) + "px";
+                tooltip.classList.add("show");
+              }; }(row));
+              tr.addEventListener("mouseleave", function() { tooltip.classList.remove("show"); });
+              ti++;
+            }
+            tbody.appendChild(tr);
+          });
+
+          // Animate bars
+          var obs = new IntersectionObserver(function(entries) {
+            if (entries[0].isIntersecting) {
+              var bars = document.querySelectorAll("#project-timeline .gc-bar");
+              for (var i = 0; i < bars.length; i++) bars[i].classList.add("animate");
+              obs.disconnect();
+            }
+          }, { threshold: 0.05 });
+          obs.observe(document.getElementById("gc-table"));
+
+          function openPanel(tr) {
+            var label = tr.dataset.rowLabel;
+            var pic = tr.dataset.rowPic;
+            var phase = tr.dataset.rowPhase;
+            var s = parseInt(tr.dataset.rowS);
+            var e = parseInt(tr.dataset.rowE);
+            var dur = e - s + 1;
+            document.getElementById("gc-panel-phase").textContent = phase;
+            document.getElementById("gc-panel-task").textContent = label;
+            document.getElementById("gc-panel-dur").textContent = dur + " week" + (dur > 1 ? "s" : "") + " (Week " + s + " – Week " + e + ")";
+            var chips = document.getElementById("gc-panel-chips");
+            chips.innerHTML = "";
+            pic.split(/[,·]/).map(function(p) { return p.trim(); }).filter(Boolean).forEach(function(p) {
+              var c = document.createElement("div");
+              c.className = "gc-chip";
+              c.textContent = p;
+              chips.appendChild(c);
+            });
+            var wksEl = document.getElementById("gc-panel-wks");
+            wksEl.innerHTML = "";
+            for (var w = 1; w <= WEEKS; w++) {
+              var pip = document.createElement("div");
+              pip.className = "gc-wk-pip" + (w >= s && w <= e ? " active" : "");
+              pip.textContent = w;
+              wksEl.appendChild(pip);
+            }
+            var pct = Math.round((e / WEEKS) * 100);
+            document.getElementById("gc-panel-pct").textContent = pct + "%";
+            document.getElementById("gc-panel-prog").style.width = "0%";
+            setTimeout(function() { document.getElementById("gc-panel-prog").style.width = pct + "%"; }, 50);
+            var allRows = document.querySelectorAll("#project-timeline .gc-data-row");
+            for (var i = 0; i < allRows.length; i++) {
+              allRows[i].classList.remove("highlighted");
+              if (allRows[i] !== tr) allRows[i].classList.add("faded");
+            }
+            tr.classList.remove("faded");
+            tr.classList.add("highlighted");
+            activeRow = tr;
+            panel.classList.add("open");
+          }
+
+          document.getElementById("gc-panel-close").addEventListener("click", closePanel);
+          document.addEventListener("keydown", function(ev) { if (ev.key === "Escape") closePanel(); });
+
+          function closePanel() {
+            panel.classList.remove("open");
+            var allRows = document.querySelectorAll("#project-timeline .gc-data-row");
+            for (var i = 0; i < allRows.length; i++) {
+              allRows[i].classList.remove("faded", "highlighted");
+            }
+            activeRow = null;
+          }
+
+          // Filter buttons
+          var filterBtns = document.querySelectorAll("#project-timeline .gc-filter-btn");
+          for (var i = 0; i < filterBtns.length; i++) {
+            filterBtns[i].addEventListener("click", function(btn) { return function() {
+              var allBtns = document.querySelectorAll("#project-timeline .gc-filter-btn");
+              for (var j = 0; j < allBtns.length; j++) allBtns[j].classList.remove("active");
+              btn.classList.add("active");
+              currentPhase = btn.dataset.filter;
+              applyFilters("");
+              closePanel();
+            }; }(filterBtns[i]));
+          }
+
+          // Search
+          document.getElementById("gc-search-input").addEventListener("input", function(e) {
+            applyFilters(e.target.value.toLowerCase());
+          });
+
+          function applyFilters(search) {
+            var allRows = document.querySelectorAll("#project-timeline #gc-tbody tr");
+            allRows.forEach(function(tr) {
+              if (tr.classList.contains("gc-cat-row")) return;
+              var phaseMatch = currentPhase === "all" || tr.dataset.rowPhase === currentPhase;
+              var searchMatch = !search || tr.dataset.label.indexOf(search) !== -1;
+              tr.style.display = (phaseMatch && searchMatch) ? "" : "none";
+            });
+            allRows.forEach(function(tr) {
+              if (!tr.classList.contains("gc-cat-row")) return;
+              var phaseName = tr.dataset.catname;
+              var hasVisible = false;
+              allRows.forEach(function(r) {
+                if (!r.classList.contains("gc-cat-row") && r.dataset.rowPhase === phaseName && r.style.display !== "none") hasVisible = true;
+              });
+              tr.style.display = hasVisible ? "" : "none";
+            });
+          }
+
+          // Week column hover
+          var chartScroll = document.getElementById("gc-chart-scroll");
+          chartScroll.addEventListener("mousemove", function(e) {
+            var cell = e.target.closest(".gc-td-week");
+            if (!cell) { clearColHover(); return; }
+            var week = cell.dataset.week;
+            if (!week) return;
+            clearColHover();
+            var cells = document.querySelectorAll('#project-timeline .gc-td-week[data-week="' + week + '"]');
+            for (var i = 0; i < cells.length; i++) cells[i].classList.add("gc-col-hover");
+          });
+          chartScroll.addEventListener("mouseleave", clearColHover);
+          function clearColHover() {
+            var hovers = document.querySelectorAll("#project-timeline .gc-col-hover");
+            for (var i = 0; i < hovers.length; i++) hovers[i].classList.remove("gc-col-hover");
+          }
+        })();
+        </script>
+      </section>
+
+    </div>
+  </div>
+
+  <!-- Footer (injected via JS) -->
+  <footer></footer>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="../three-header.js"></script>
+  <script type="module" src="../src/js/main.js"></script>
+</body>
+</html>

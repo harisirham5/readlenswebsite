@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>readlens — AI-Powered Smart Glasses for the Visually Impaired</title>
+  <meta name="description" content="readlens is an affordable AI-powered smart glasses system designed to assist blind and myopic individuals in daily navigation and reading tasks.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="readlens — See Beyond. Explore Safely.">
+  <meta property="og:description" content="Affordable, AI-powered smart glasses for blind and myopic individuals.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://readlens.my/logoandtexttransparent.png">
+  <meta property="og:url" content="https://readlens.my">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="readlens — AI Smart Glasses">
+  <meta name="twitter:description" content="Affordable AI-powered smart glasses for the visually impaired.">
+  <meta name="twitter:image" content="https://readlens.my/logoandtexttransparent.png">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="src/css/styles.css">
+
+  <!-- Theme -->
+  <meta name="theme-color" content="#10b981">
+</head>
+<body>
+
+  <div id="canvas-container" aria-hidden="true"></div>
+
+  <!-- Top Navigation (injected via JS) -->
+  <header class="top-nav"></header>
+
+  <header id="hero">
+    <div class="hero-content">
+      <img src="logobarugaishijau.png" alt="readlens logo" class="hero-logo" loading="eager">
+      <h1 class="hero-title">See Beyond.<br>Explore Safely.</h1>
+      <p class="hero-subtitle">Affordable, <strong>AI-powered smart glasses</strong> system designed to assist blind and myopic individuals in daily navigation and reading tasks.</p>
+      <div class="hero-actions">
+        <a href="pageproblemidentification/index.html" class="btn-primary">Explore the Challenge</a>
+        <a href="pageengineeringdesign/index.html" class="btn-secondary">View Our Solution</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content" class="doc-content doc-content--full">
+
+    <section class="content-section" id="welcome">
+      <h2>Welcome to readlens</h2>
+      <p>Malaysia faces a growing accessibility challenge: over <strong>300,000 citizens</strong> live with severe visual impairment, and myopia affects nearly <strong>one third</strong> of the population.</p>
+      <p><strong>readlens</strong> directly addresses this gap by providing an affordable, <strong>AI-powered smart glasses system</strong> for blind and myopic users, combining real-time <strong>text recognition</strong>, <strong>object identification</strong>, and <strong>audio feedback</strong>.</p>
+    </section>
+
+    <section class="content-section" id="stats">
+      <h2>By The Numbers</h2>
+      <div class="stats-row">
+        <div class="stat">
+          <div class="stat-num">300,000+</div>
+          <div class="stat-label">Visually Impaired Citizens in Malaysia</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">42.7%</div>
+          <div class="stat-label">Malaysian Adolescents with Myopia</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">RM 700–2.5K</div>
+          <div class="stat-label">Cost of Traditional Smart Glasses</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">RM 72.41</div>
+          <div class="stat-label">Target Cost for readlens</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section" id="features">
+      <h2>Key Features</h2>
+      <div class="card-grid card-grid--4">
+        <div class="card">
+          <div class="card__icon">&#128247;</div>
+          <div class="card__title">Real-Time OCR</div>
+          <div class="card__text">Instantly reads printed text and converts it to clear <strong>audio feedback</strong>.</div>
+        </div>
+        <div class="card">
+          <div class="card__icon">&#128266;</div>
+          <div class="card__title">Audio Feedback</div>
+          <div class="card__text">Crystal-clear voice alerts for <strong>obstacle detection</strong> and navigation guidance.</div>
+        </div>
+        <div class="card">
+          <div class="card__icon">&#127919;</div>
+          <div class="card__title">Object Detection</div>
+          <div class="card__text"><strong>AI-powered</strong> recognition of everyday objects, signs, and obstacles in real time.</div>
+        </div>
+        <div class="card">
+          <div class="card__icon">&#9889;</div>
+          <div class="card__title">Low Latency</div>
+          <div class="card__text"><strong>Sub-300ms</strong> response time ensures smooth, uninterrupted user experience.</div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer (injected via JS) -->
+  <footer></footer>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="three-header.js"></script>
+  <script type="module" src="src/js/main.js"></script>
+</body>
+</html>
