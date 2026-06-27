@@ -368,31 +368,60 @@ const FLOWCHART_DETAILS = {
 };
 
 function initFlowchart() {
+  const wrapper = document.querySelector('.flowchart-wrapper');
   const container = document.querySelector('.mermaid-container');
-  const details = document.getElementById('explanation-panel');
-  if (!container || !details) return;
+  const popover = document.getElementById('flowchart-popover');
+  if (!wrapper || !container || !popover) return;
 
-  const detailsIcon = details.querySelector('.flowchart-details__icon');
-  const detailsTitle = details.querySelector('.flowchart-details__title');
-  const detailsBody = details.querySelector('.flowchart-details__body');
-  const closeBtn = details.querySelector('.flowchart-details__close');
+  const popoverTitle = popover.querySelector('.flowchart-popover__title');
+  const popoverText = popover.querySelector('.flowchart-popover__text');
+  const popoverIcon = popover.querySelector('.flowchart-popover__icon');
+  const popoverClose = popover.querySelector('.flowchart-popover__close');
 
   let activeNode = null;
+
+  function hidePopover() {
+    popover.classList.remove('flowchart-popover--visible');
+    popover.setAttribute('aria-hidden', 'true');
+  }
+
+  function showPopover(node, data) {
+    // Update content
+    popoverIcon.textContent = data.icon;
+    popoverTitle.textContent = data.title;
+    popoverText.textContent = data.body;
+
+    // Position relative to wrapper
+    const wrapperRect = wrapper.getBoundingClientRect();
+    const nodeRect = node.getBoundingClientRect();
+
+    // Default: place below the node, horizontally centered on the node
+    let top = nodeRect.bottom - wrapperRect.top + 10;
+    let left = nodeRect.left - wrapperRect.left + (nodeRect.width / 2) - 140; // 140 = half popover width
+
+    // Flip above if too close to bottom of visible area
+    if (top + 180 > wrapperRect.height) {
+      top = nodeRect.top - wrapperRect.top - 180;
+    }
+
+    // Clamp horizontal bounds
+    left = Math.max(8, Math.min(left, wrapperRect.width - 288));
+
+    popover.style.top = top + 'px';
+    popover.style.left = left + 'px';
+    popover.classList.add('flowchart-popover--visible');
+    popover.setAttribute('aria-hidden', 'false');
+  }
 
   function clearSelection() {
     if (activeNode) {
       activeNode.classList.remove('active-node');
       activeNode = null;
     }
-    details.classList.remove('flowchart-details--active');
-    detailsIcon.textContent = '💡';
-    detailsTitle.textContent = 'How it works';
-    detailsBody.textContent = 'Click any process block in the flowchart to see what it does.';
-    detailsBody.classList.add('flowchart-details__placeholder');
+    hidePopover();
   }
 
-  function selectNode(node) {
-    // Mermaid wraps text inside <span> inside <div> inside <g>. Pull visible text.
+  function handleNodeClick(node) {
     const nodeText = node.textContent.replace(/\s+/g, ' ').trim();
     const data = FLOWCHART_DETAILS[nodeText];
 
@@ -400,31 +429,48 @@ function initFlowchart() {
 
     if (!data) return;
 
+    if (activeNode === node) {
+      // Toggle off if clicking the same node
+      clearSelection();
+      return;
+    }
+
     if (activeNode) activeNode.classList.remove('active-node');
     node.classList.add('active-node');
     activeNode = node;
 
-    detailsIcon.textContent = data.icon;
-    detailsTitle.textContent = data.title;
-    detailsBody.textContent = data.body;
-    detailsBody.classList.remove('flowchart-details__placeholder');
-    details.classList.add('flowchart-details--active');
+    showPopover(node, data);
   }
 
-  // EVENT DELEGATION: bind once on the stable parent, catch any .node click
-  // regardless of when Mermaid injects the SVG. Re-runs are idempotent.
-  container.addEventListener('click', (e) => {
+  // EVENT DELEGATION: single listener on the stable wrapper catches all .node
+  // clicks regardless of when Mermaid injects the SVG.
+  wrapper.addEventListener('click', (e) => {
     const node = e.target.closest('.node') || e.target.closest('g[id^="flowchart-"]');
     if (!node) return;
     e.stopPropagation();
-    if (activeNode === node) {
+    handleNodeClick(node);
+  });
+
+  // Close button inside popover
+  popoverClose.addEventListener('click', (e) => {
+    e.stopPropagation();
+    clearSelection();
+  });
+
+  // Click outside the popover closes it
+  document.addEventListener('click', (e) => {
+    if (!popover.classList.contains('flowchart-popover--visible')) return;
+    if (!wrapper.contains(e.target)) {
       clearSelection();
-    } else {
-      selectNode(node);
     }
   });
 
-  closeBtn.addEventListener('click', clearSelection);
+  // Escape key closes
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && popover.classList.contains('flowchart-popover--visible')) {
+      clearSelection();
+    }
+  });
 }
 
 /* ── Initialize ── */

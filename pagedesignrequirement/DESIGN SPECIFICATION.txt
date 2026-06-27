@@ -4,7 +4,7 @@ DESIGN SPECIFICATION
 NO.	User Need	Design Attribute	Design Characteristic	Engineering Target	Components
 MUST HAVE					
 1	Object identification	Detection accuracy, processing speed	Ability to correctly identify objects in real time using onboard AI	≥ 90 % accuracy; ≤ 1.5 s response time	OV5640 camera (5MP), ESP32‑S3 MCU, AI model (TensorFlow Lite)
-2	Hands free text recognition (OCR)	OCR accuracy, latency	Ability to recognize printed and handwritten text and convert it to speech	≥ 80 % printed text accuracy; ≥ 70 % handwritten; ≤ 1.0 s latency	OV5640 camera, ESP32‑S3, OCR engine (Gemini API / Tesseract.js)
+2	Hands free text recognition (OCR)	OCR accuracy, latency	Ability to recognize printed and handwritten text and convert it to speech	≥ 80 % printed text accuracy; ≥ 70 % handwritten; ≤ 1.0 s latency	OV5640 camera, ESP32‑S3, NVIDIA AI cloud processing
 3	Audio feedback clarity	Sound quality, latency	Audio output intelligibility and delay between recognition and speech	≥ 85 % intelligibility; ≤ 100 ms delay	Earphone drivers (Bluetooth A2DP/SBC), mini speaker
 SHOULD HAVE					
 4	Comfort & usability	Weight, ergonomics	Device weight and balance suitable for prolonged wear	≤ 150 g total device weight	Lightweight glasses frame, custom PCB, Li‑Po battery

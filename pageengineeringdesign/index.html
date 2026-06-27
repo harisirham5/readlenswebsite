@@ -175,14 +175,14 @@
                 R --> B
             </div>
           </div>
-          <aside id="explanation-panel" class="flowchart-details" aria-live="polite">
-            <div class="flowchart-details__header">
-              <span class="flowchart-details__icon">💡</span>
-              <h3 class="flowchart-details__title">How it works</h3>
+          <div class="flowchart-popover" id="flowchart-popover" aria-hidden="true">
+            <button class="flowchart-popover__close" aria-label="Close">&times;</button>
+            <div class="flowchart-popover__body">
+              <span class="flowchart-popover__icon">💡</span>
+              <h4 class="flowchart-popover__title">How it works</h4>
+              <p class="flowchart-popover__text">Click any process block in the flowchart to see what it does.</p>
             </div>
-            <p class="flowchart-details__body flowchart-details__placeholder">Click any process block in the flowchart to see what it does.</p>
-            <button type="button" class="flowchart-details__close" aria-label="Clear selection">&times;</button>
-          </aside>
+          </div>
         </div>
       </section>
 
