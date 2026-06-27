@@ -2,7 +2,12 @@ import { defineConfig } from 'vite'
 import { resolve } from 'path'
 
 export default defineConfig({
+  // Ensures all asset URLs are absolute from the site root — required for Vercel CDN
+  base: '/',
+
   build: {
+    // Copy everything from public/ into the dist root
+    assetsDir: 'assets',
     rollupOptions: {
       input: {
         main: resolve(__dirname, 'index.html'),
