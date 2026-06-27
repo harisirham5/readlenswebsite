@@ -3,7 +3,7 @@
 Oversees the entire development process, ensuring hardware (ESP32‑S3, OV5640 camera, Li‑Po battery) and software (mobile app + AI models) work seamlessly together. Responsible for project planning, documentation, and aligning the design with accessibility goals and user needs.
 
 🧠 AI & Mobile App Developer (Irham)  
-Designs and implements the ReadLens smartphone application. Handles image processing for OCR (EasyOCR) and object detection (LLaVA), manages Bluetooth communication with the ESP32‑S3, and ensures smooth user interaction through audio feedback and mode confirmation.
+Designs and implements the ReadLens smartphone application. Handles image processing via NVIDIA AI-powered vision models, delivering real-time OCR text recognition and LLaVA-based object detection, manages Bluetooth communication with the ESP32‑S3, and ensures smooth user interaction through audio feedback and mode confirmation.
 
 ⚙️ Hardware & Circuit Designer (Adam)  
 Develops the electronic architecture of the smart glasses, including the ESP32‑S3 microcontroller, OV5640 camera, TP4056 charging module, and Li‑Po battery integration. Focuses on compact design, power efficiency, and modular assembly for local repair.

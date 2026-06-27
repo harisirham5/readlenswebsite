@@ -55,15 +55,15 @@
         <h2>Target Users &amp; Industry Focus</h2>
         <div class="split-section split-section--reverse">
           <div class="split-section__content">
-            <p><strong>Primary Users:</strong> Blind and severely visually impaired individuals needing real-time <strong>text-to-speech</strong> and <strong>object identification</strong> assistance.</p>
-            <p><strong>Secondary Users:</strong> Myopic and low-vision users requiring <strong>audio-based feedback</strong> for reading and everyday tasks.</p>
-            <p><strong>Industry Focus:</strong> readlens operates within the <strong>assistive technology and healthcare innovation</strong> sector, addressing the lack of affordable, <strong>AI-powered wearable solutions</strong> for Malaysia's visually impaired community. By integrating <strong>ESP32-S3 + OV5640 camera</strong> with a connected mobile application, readlens enables users to:</p>
+            <p><strong>Visually impaired individuals</strong> &mdash; including blind and low-vision users &mdash; are the main target users of this project.</p>
+            <p>Why? Because they are <strong>unable to fully perceive visual information</strong> from their surroundings, such as identifying objects, recognizing colors, or reading printed and digital text. This limitation makes it difficult for them to perform daily activities independently.</p>
+            <p>Their reliance on <strong>non-visual senses</strong> &mdash; particularly touch and hearing &mdash; shapes how they navigate and obtain information. Yet the tools available to them today fall short:</p>
             <ul class="feature-list">
-              <li>Read printed or handwritten text via <strong>OCR</strong> and receive speech feedback.</li>
-              <li>Identify surrounding objects in <strong>real time</strong>.</li>
-              <li>Switch between modes easily using a <strong>tactile button</strong> with audio confirmation.</li>
-              <li>Benefit from <strong>modular, locally sourced</strong> components for easy maintenance and scalability.</li>
+              <li><strong>White canes</strong> detect obstacles and support safe navigation, but cannot identify what an object is or describe its characteristics.</li>
+              <li><strong>Smartphone apps</strong> (e.g. Seeing AI, Lookout) can perform object detection and text recognition, yet require users to hold and operate the phone manually &mdash; inconvenient when both hands are needed for mobility.</li>
+              <li><strong>Premium wearables</strong> (OrCam, Envision) offer a hands-free experience, but cost <strong>RM 10,000&ndash;15,000+</strong>, putting them out of reach for most users.</li>
             </ul>
+            <p>Therefore, there is a clear need for a <strong>practical, wearable assistive device</strong> that can automatically identify objects, recognize text in real time, and provide immediate audio feedback &mdash; <strong>hands-free</strong>. Such a solution would greatly improve the independence, safety, and quality of life of visually impaired individuals.</p>
           </div>
           <div class="split-section__media">
             <img src="blindpeoplewithcane.avif" alt="Target Users" loading="lazy">
@@ -79,7 +79,7 @@
         <h3>Solution Strategy</h3>
         <ul class="feature-list">
           <li><strong>ESP32-S3 + OV5640 Camera</strong> &mdash; captures real-time images and streams them to the connected mobile app.</li>
-          <li><strong>readLens Mobile Application</strong> &mdash; processes captured images using AI models (<strong>EasyOCR</strong> for text recognition, <strong>LLaVA</strong> for object identification).</li>
+          <li><strong>readLens Mobile Application</strong> &mdash; processes captured images using NVIDIA AI cloud processing for text recognition and LLaVA-based object identification.</li>
           <li><strong>Audio Feedback System</strong> &mdash; delivers spoken results and mode confirmations via <strong>Bluetooth earphones</strong>.</li>
           <li><strong>Button Press Logic</strong> &mdash; tactile push button (GPIO4) controls capture and toggles between <strong>Text Mode</strong> and <strong>Object Mode</strong>, with audio prompts confirming the active mode.</li>
           <li><strong>Confidence Threshold Decision</strong> &mdash; ensures reliable outputs; unclear results trigger retry prompts (&ldquo;Result unclear, adjust angle&rdquo;).</li>
@@ -133,129 +133,62 @@
 
       <!-- Benchmarking -->
       <section class="content-section" id="benchmarking">
-        <h2>Benchmarking</h2>
-        <p>Comprehensive comparison of readlens against existing assistive solutions across four key categories.</p>
+        <h2>Benchmarking &amp; Competitive Analysis</h2>
+        <p>How readlens compares against the current industry standards &mdash; <strong>OrCam MyEye</strong> and <strong>Envision Glasses</strong> &mdash; across the metrics that matter most to users.</p>
 
-        <div class="table-wrapper">
-          <table>
-            <thead>
-              <tr>
-                <th>User Needs / Products</th>
-                <th>Google Lookout App</th>
-                <th>Envision Glasses</th>
-                <th>OrCam MyEye Pro</th>
-                <th style="color: var(--color-emerald-dark);">readlens</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr class="table-category">
-                <td colspan="5">1. Text Recognition (OCR)</td>
-              </tr>
-              <tr>
-                <td><strong>OCR Engine</strong></td>
-                <td>Google Cloud Vision</td>
-                <td>Envision AI Cloud</td>
-                <td>OrCam AI Offline</td>
-                <td style="font-weight: 700; color: var(--color-emerald-dark);">Smartphone App (Ollama, Llava AI)</td>
-              </tr>
-              <tr>
-                <td><strong>Response Time</strong></td>
-                <td>2&ndash;3 s (cloud latency)</td>
-                <td>2&ndash;3 s (cloud latency)</td>
-                <td>~ 2 s (on-device)</td>
-                <td style="font-weight: 700; color: var(--color-emerald-dark);">&le; 1.5 s (capture &rarr; speech)</td>
-              </tr>
-              <tr>
-                <td><strong>Output Method</strong></td>
-                <td>Audio via phone</td>
-                <td>Audio via earpiece</td>
-                <td>Audio via speaker</td>
-                <td style="font-weight: 700; color: var(--color-emerald-dark);">Speech via earphone drivers (Bluetooth A2DP/SBC)</td>
-              </tr>
+        <div class="benchmark-grid">
+          <!-- OrCam MyEye -->
+          <div class="benchmark-card">
+            <div class="benchmark-card__header">
+              <h3>OrCam MyEye</h3>
+              <span class="benchmark-card__price benchmark-card__price--high">$3,500+</span>
+            </div>
+            <ul class="benchmark-card__list">
+              <li><strong>Price</strong> <span class="benchmark-val benchmark-val--high">$3,500+ USD</span></li>
+              <li><strong>Architecture</strong> <span class="benchmark-val">Proprietary &amp; closed-source</span></li>
+              <li><strong>AI Model</strong> <span class="benchmark-val">Fixed on-device only</span></li>
+              <li><strong>Form Factor</strong> <span class="benchmark-val">Clip-on wearable</span></li>
+              <li><strong>Hands-Free</strong> <span class="benchmark-val benchmark-val--yes">Yes</span></li>
+              <li><strong>Local Sourcing</strong> <span class="benchmark-val benchmark-val--no">Imported only</span></li>
+            </ul>
+          </div>
 
-              <tr class="table-category">
-                <td colspan="5">2. Object Identification</td>
-              </tr>
-              <tr>
-                <td><strong>Detection Type</strong></td>
-                <td>Cloud AI scene description</td>
-                <td>Cloud AI scene description</td>
-                <td>Offline object database</td>
-                <td style="font-weight: 700; color: var(--color-emerald-dark);">On-device AI + App query chatbot</td>
-              </tr>
-              <tr>
-                <td><strong>Interaction</strong></td>
-                <td>Limited voice commands</td>
-                <td>Limited voice commands</td>
-                <td>Fixed responses</td>
-                <td style="font-weight: 700; color: var(--color-emerald-dark);">User can ask AI chatbot follow-up questions about captured image</td>
-              </tr>
-              <tr>
-                <td><strong>Detection Speed</strong></td>
-                <td>Cloud-dependent (~ 400 ms)</td>
-                <td>Cloud-dependent (~ 300 ms)</td>
-                <td>On-device (~ 200 ms)</td>
-                <td style="font-weight: 700; color: var(--color-emerald-dark);">Instant (sensor trigger + AI app processing)</td>
-              </tr>
+          <!-- Envision Glasses -->
+          <div class="benchmark-card">
+            <div class="benchmark-card__header">
+              <h3>Envision Glasses</h3>
+              <span class="benchmark-card__price benchmark-card__price--high">$2,500+</span>
+            </div>
+            <ul class="benchmark-card__list">
+              <li><strong>Price</strong> <span class="benchmark-val benchmark-val--high">$2,500+ USD</span></li>
+              <li><strong>Architecture</strong> <span class="benchmark-val">Proprietary &amp; closed-source</span></li>
+              <li><strong>AI Model</strong> <span class="benchmark-val">Cloud-dependent</span></li>
+              <li><strong>Form Factor</strong> <span class="benchmark-val">Integrated glasses</span></li>
+              <li><strong>Hands-Free</strong> <span class="benchmark-val benchmark-val--yes">Yes</span></li>
+              <li><strong>Local Sourcing</strong> <span class="benchmark-val benchmark-val--no">Imported only</span></li>
+            </ul>
+          </div>
 
-              <tr class="table-category">
-                <td colspan="5">3. Accessibility &amp; Usability</td>
-              </tr>
-              <tr>
-                <td><strong>Target Users</strong></td>
-                <td>General users with visual impairment</td>
-                <td>Blind and Low-Vision Users</td>
-                <td>Blind and Low-Vision Users</td>
-                <td style="font-weight: 700; color: var(--color-emerald-dark);">Blind and Low-Vision Users</td>
-              </tr>
-              <tr>
-                <td><strong>Weight</strong></td>
-                <td>Smartphone only</td>
-                <td>~ 200 g</td>
-                <td>~ 180 g</td>
-                <td style="font-weight: 700; color: var(--color-emerald-dark);">&le; 150 g (total device)</td>
-              </tr>
-              <tr>
-                <td><strong>Installation Type</strong></td>
-                <td>App installation</td>
-                <td>Fully integrated</td>
-                <td>Clip-on module</td>
-                <td style="font-weight: 700; color: var(--color-emerald-dark);">Plug-and-play (USB charging + Bluetooth pairing)</td>
-              </tr>
-              <tr>
-                <td><strong>Professional Setup</strong></td>
-                <td>Not required</td>
-                <td>Required for pairing and training</td>
-                <td>Required for calibration</td>
-                <td style="font-weight: 700; color: var(--color-emerald-dark);">Not required</td>
-              </tr>
+          <!-- ReadLens -->
+          <div class="benchmark-card benchmark-card--featured">
+            <div class="benchmark-card__badge">Our Solution</div>
+            <div class="benchmark-card__header">
+              <h3>readlens</h3>
+              <span class="benchmark-card__price benchmark-card__price--low">Under $100</span>
+            </div>
+            <ul class="benchmark-card__list">
+              <li><strong>Price</strong> <span class="benchmark-val benchmark-val--low">Under RM 100 total build</span></li>
+              <li><strong>Architecture</strong> <span class="benchmark-val benchmark-val--low">Open-architecture</span></li>
+              <li><strong>AI Model</strong> <span class="benchmark-val benchmark-val--low">Swappable (Llama 3.2 Vision, etc.)</span></li>
+              <li><strong>Form Factor</strong> <span class="benchmark-val benchmark-val--low">Lightweight wearable</span></li>
+              <li><strong>Hands-Free</strong> <span class="benchmark-val benchmark-val--low benchmark-val--yes">Yes</span></li>
+              <li><strong>Local Sourcing</strong> <span class="benchmark-val benchmark-val--low benchmark-val--yes">Malaysia market</span></li>
+            </ul>
+          </div>
+        </div>
 
-              <tr class="table-category">
-                <td colspan="5">4. Cost &amp; Maintenance</td>
-              </tr>
-              <tr>
-                <td><strong>Estimated Cost</strong></td>
-                <td>Free app</td>
-                <td>&gt; RM 10,000</td>
-                <td>&gt; RM 15,000</td>
-                <td style="font-weight: 700; color: var(--color-emerald-dark);">&le; RM 300 (BOM target)</td>
-              </tr>
-              <tr>
-                <td><strong>Component Availability</strong></td>
-                <td>Software only</td>
-                <td>Imported only</td>
-                <td>Imported only</td>
-                <td style="font-weight: 700; color: var(--color-emerald-dark);">Local Malaysia market (PAM8403, ESP32-S3, OV5640, earphone drivers)</td>
-              </tr>
-              <tr>
-                <td><strong>Repairability</strong></td>
-                <td>N/A</td>
-                <td>Proprietary hardware</td>
-                <td>Proprietary hardware</td>
-                <td style="font-weight: 700; color: var(--color-emerald-dark);">Modular design (PCB + replaceable modules)</td>
-              </tr>
-            </tbody>
-          </table>
+        <div class="benchmark-verdict">
+          <p><strong>Premium experience, accessible price.</strong> readlens matches the crucial <strong>hands-free wearable</strong> form-factor of OrCam and Envision &mdash; while free smartphone apps like Seeing AI still require holding a phone &mdash; at <strong>under 1/30th the cost</strong>, with an open architecture that lets developers swap in any state-of-the-art AI model.</p>
         </div>
       </section>
 

@@ -4,7 +4,7 @@ ReadLens is an affordable, wearable AI smart‑glasses system designed to assist
 🛠️ Solution Strategy
 📷 ESP32‑S3 + OV5640 Camera — captures real‑time images and streams them to the connected mobile app.
 
-📱 ReadLens Mobile Application — processes captured images using AI models (EasyOCR for text recognition, LLaVA for object identification).
+📱 ReadLens Mobile Application — processes captured images using NVIDIA AI cloud processing for text recognition and LLaVA-based object identification.
 
 🔊 Audio Feedback System — delivers spoken results and mode confirmations via Bluetooth earphones.
 

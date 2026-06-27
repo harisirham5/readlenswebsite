@@ -266,6 +266,167 @@ function initSidebarActive() {
   });
 }
 
+/* ── Team Modal ── */
+function initTeamModal() {
+  const modal = document.getElementById('team-modal');
+  if (!modal) return;
+
+  const backdrop = modal.querySelector('.team-modal__backdrop');
+  const closeBtn = modal.querySelector('.team-modal__close');
+  const cardContainer = modal.querySelector('.team-modal__card');
+
+  function openModal(card) {
+    cardContainer.innerHTML = card.innerHTML;
+    modal.classList.add('team-modal--visible');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('modal-open');
+  }
+
+  function closeModal() {
+    modal.classList.remove('team-modal--visible');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('modal-open');
+  }
+
+  document.querySelectorAll('.team-card').forEach(card => {
+    card.style.cursor = 'pointer';
+    card.setAttribute('tabindex', '0');
+    card.setAttribute('role', 'button');
+    card.setAttribute('aria-label', 'View team member details');
+
+    card.addEventListener('click', () => openModal(card));
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openModal(card);
+      }
+    });
+  });
+
+  closeBtn.addEventListener('click', closeModal);
+  backdrop.addEventListener('click', closeModal);
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('team-modal--visible')) {
+      closeModal();
+    }
+  });
+}
+
+/* ── Interactive Flowchart ── */
+const FLOWCHART_DETAILS = {
+  "🔌 Power on (switch)": {
+    icon: "🔌",
+    title: "Power On",
+    body: "Initializes the power rail from the 1000 mAh Li-ion battery via the boost converter to stable 5V."
+  },
+  "🕹️ Select mode (switch)": {
+    icon: "🕹️",
+    title: "Mode Selection",
+    body: "The 2-way switch toggles the firmware state between Real-time Object Identification and OCR Text Recognition."
+  },
+  "📷 Capture Image": {
+    icon: "📷",
+    title: "Capture Image",
+    body: "Triggers the OV5640 camera module to capture a frame and buffer it in the ESP32-S3's PSRAM."
+  },
+  "📡 Microcontroller WiFi on same network as app": {
+    icon: "📡",
+    title: "WiFi Streaming",
+    body: "The ESP32-S3 serializes the image data and streams it over a low-latency network socket to the processing host."
+  },
+  "🤖 App NVIDIA AI processes image": {
+    icon: "🤖",
+    title: "AI Processing",
+    body: "The backend utilizes vision-language models to perform contextual scene analysis or high-accuracy OCR text extraction."
+  },
+  "Image received?": {
+    icon: "✅",
+    title: "Data Validation",
+    body: "Validation step confirming data integrity. If packets are dropped, the system loops back to prompt a recapture."
+  },
+  "📝 App sends text Result / OCR text output": {
+    icon: "📝",
+    title: "Result Transmission",
+    body: "The payload containing the processed string output is transmitted back to the hardware layer."
+  },
+  "🔊 I2S module Text-to-speech conversion": {
+    icon: "🔊",
+    title: "Text-to-Speech",
+    body: "Converts the raw text strings into high-quality analog audio signals via the I2S audio amplifier."
+  },
+  "🔈 Speaker output": {
+    icon: "🔈",
+    title: "Speaker Output",
+    body: "Delivers clear, real-time auditory descriptions directly to the micro earphone units."
+  },
+  "User gives audio feedback?": {
+    icon: "🎤",
+    title: "Audio Feedback",
+    body: "Allows the user to hold the tactile button to ask follow-up questions about the scene."
+  }
+};
+
+function initFlowchart() {
+  const container = document.querySelector('.mermaid-container');
+  const details = document.getElementById('explanation-panel');
+  if (!container || !details) return;
+
+  const detailsIcon = details.querySelector('.flowchart-details__icon');
+  const detailsTitle = details.querySelector('.flowchart-details__title');
+  const detailsBody = details.querySelector('.flowchart-details__body');
+  const closeBtn = details.querySelector('.flowchart-details__close');
+
+  let activeNode = null;
+
+  function clearSelection() {
+    if (activeNode) {
+      activeNode.classList.remove('active-node');
+      activeNode = null;
+    }
+    details.classList.remove('flowchart-details--active');
+    detailsIcon.textContent = '💡';
+    detailsTitle.textContent = 'How it works';
+    detailsBody.textContent = 'Click any process block in the flowchart to see what it does.';
+    detailsBody.classList.add('flowchart-details__placeholder');
+  }
+
+  function selectNode(node) {
+    // Mermaid wraps text inside <span> inside <div> inside <g>. Pull visible text.
+    const nodeText = node.textContent.replace(/\s+/g, ' ').trim();
+    const data = FLOWCHART_DETAILS[nodeText];
+
+    console.log('[flowchart] Node Clicked:', nodeText, data ? '→ MATCHED' : '→ NO MATCH');
+
+    if (!data) return;
+
+    if (activeNode) activeNode.classList.remove('active-node');
+    node.classList.add('active-node');
+    activeNode = node;
+
+    detailsIcon.textContent = data.icon;
+    detailsTitle.textContent = data.title;
+    detailsBody.textContent = data.body;
+    detailsBody.classList.remove('flowchart-details__placeholder');
+    details.classList.add('flowchart-details--active');
+  }
+
+  // EVENT DELEGATION: bind once on the stable parent, catch any .node click
+  // regardless of when Mermaid injects the SVG. Re-runs are idempotent.
+  container.addEventListener('click', (e) => {
+    const node = e.target.closest('.node') || e.target.closest('g[id^="flowchart-"]');
+    if (!node) return;
+    e.stopPropagation();
+    if (activeNode === node) {
+      clearSelection();
+    } else {
+      selectNode(node);
+    }
+  });
+
+  closeBtn.addEventListener('click', clearSelection);
+}
+
 /* ── Initialize ── */
 document.addEventListener('DOMContentLoaded', () => {
   injectTopNav();
@@ -276,4 +437,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initScrollEffects();
   initReveal();
   initSidebarActive();
+  initTeamModal();
+  initFlowchart();
 });

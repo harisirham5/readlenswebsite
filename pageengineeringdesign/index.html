@@ -12,6 +12,8 @@
   <link rel="stylesheet" href="../src/css/styles.css">
 
   <meta name="theme-color" content="#10b981">
+
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
 </head>
 <body>
 
@@ -36,12 +38,9 @@
       <section class="content-section" id="bill-of-process">
         <h2>Bill of Process</h2>
         <p>The manufacturing and assembly process is optimized for <strong>cost-efficiency</strong> while maintaining high reliability for the readlens smart glasses hardware.</p>
-        <div class="img-container">
-          <img src="biilingofprocess.png" alt="Bill of Process" loading="lazy" onerror="this.style.display='none'">
-        </div>
 
         <h3>Bill of Materials</h3>
-        <p>Complete component breakdown with sourcing, cost, and functional mapping. Total BOM target: <strong>RM 72.41</strong>.</p>
+        <p>Complete component breakdown with sourcing, cost, and functional mapping. Total BOM target: <strong>RM 112.60</strong>.</p>
 
         <div class="table-wrapper">
           <table>
@@ -49,132 +48,97 @@
               <tr>
                 <th>Part No.</th>
                 <th>Enablers / Components</th>
-                <th>Est. Cost (RM)</th>
-                <th>Process</th>
+                <th>Pax</th>
+                <th>Cost</th>
+                <th>Estimated Cost (RM)</th>
                 <th>Functionality</th>
-                <th>Category</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td>1</td>
-                <td><strong>ESP32-S3 microcontroller</strong></td>
-                <td>40.68</td>
-                <td>Purchase</td>
+                <td><strong>ESP32-S3 CAM &amp; OV5640 camera module</strong></td>
+                <td>1</td>
+                <td>65.00</td>
+                <td>65.00</td>
                 <td>Main processor, <strong>Bluetooth A2DP/SBC</strong>, I&sup2;S audio output</td>
-                <td><span class="badge badge-hardware">Hardware</span></td>
               </tr>
               <tr>
                 <td>2</td>
-                <td><strong>OV5640 camera module</strong></td>
-                <td>&mdash;</td>
-                <td>Purchase</td>
-                <td>Captures images for <strong>OCR / Object ID</strong></td>
-                <td><span class="badge badge-hardware">Hardware</span></td>
+                <td><strong>Micro earphone speaker units (8 &Omega;, 1A)</strong></td>
+                <td>2</td>
+                <td>0.90</td>
+                <td>1.80</td>
+                <td>Lightweight audio output</td>
               </tr>
               <tr>
                 <td>3</td>
-                <td><strong>Micro earphone speaker units (16&ndash;32 &Omega;)</strong></td>
-                <td>6.02</td>
-                <td>Purchase</td>
-                <td>Lightweight audio output</td>
-                <td><span class="badge badge-hardware">Hardware</span></td>
+                <td><strong>Lithium-ion battery (1000 mAh)</strong></td>
+                <td>1</td>
+                <td>14.00</td>
+                <td>14.00</td>
+                <td>Power source</td>
               </tr>
               <tr>
                 <td>4</td>
-                <td><strong>Lithium-ion battery (1200 mAh)</strong></td>
-                <td>13.99</td>
-                <td>Purchase</td>
-                <td>Power source</td>
-                <td><span class="badge badge-hardware">Hardware</span></td>
+                <td><strong>TP4056 charging module</strong></td>
+                <td>1</td>
+                <td>1.90</td>
+                <td>1.90</td>
+                <td>Safe battery charging (<strong>USB/Type-C</strong>)</td>
               </tr>
               <tr>
                 <td>5</td>
-                <td><strong>TP4056 charging module</strong></td>
-                <td>3.00</td>
-                <td>Purchase</td>
-                <td>Safe battery charging (<strong>USB/Type-C</strong>)</td>
-                <td><span class="badge badge-hardware">Hardware</span></td>
+                <td><strong>Tactile push button</strong></td>
+                <td>1</td>
+                <td>0.20</td>
+                <td>0.20</td>
+                <td>User input trigger</td>
               </tr>
               <tr>
                 <td>6</td>
-                <td><strong>Tactile push button</strong></td>
-                <td>0.33</td>
-                <td>Purchase</td>
-                <td>User input trigger</td>
-                <td><span class="badge badge-hardware">Hardware</span></td>
+                <td><strong>Wiring</strong></td>
+                <td>3</td>
+                <td>12.70</td>
+                <td>12.70</td>
+                <td>Mounting and connections</td>
               </tr>
               <tr>
                 <td>7</td>
-                <td><strong>Glasses frame housing</strong></td>
-                <td>&mdash;</td>
-                <td>Purchase</td>
-                <td>Embeds electronics</td>
-                <td><span class="badge badge-hardware">Hardware</span></td>
+                <td><strong>2 way switch</strong></td>
+                <td>2</td>
+                <td>0.50</td>
+                <td>1.00</td>
+                <td>on and off purposes</td>
               </tr>
               <tr>
                 <td>8</td>
-                <td><strong>PCB / perfboard + wiring</strong></td>
-                <td>4.39</td>
-                <td>Purchase</td>
-                <td>Mounting and connections</td>
-                <td><span class="badge badge-hardware">Hardware</span></td>
+                <td><strong>Breadboard</strong></td>
+                <td>1</td>
+                <td>3.00</td>
+                <td>3.00</td>
+                <td>connect the electronics (for testing purposes)</td>
               </tr>
               <tr>
                 <td>9</td>
-                <td><strong>DC3V Mini Vibration Motors 10000rpm</strong></td>
-                <td>4.00</td>
-                <td>Purchase</td>
-                <td><strong>Haptic vibration</strong> alerts</td>
-                <td><span class="badge badge-hardware">Hardware</span></td>
-              </tr>
-              <tr class="table-category">
-                <td colspan="6">Software</td>
+                <td><strong>Mini DC-DC boost converter</strong></td>
+                <td>1</td>
+                <td>1.00</td>
+                <td>1.00</td>
+                <td>convert 3.7V to 5V with 1A</td>
               </tr>
               <tr>
                 <td>10</td>
-                <td><strong>ESP32-S3 firmware</strong> (Arduino IDE / ESP-IDF)</td>
-                <td>&mdash;</td>
-                <td>Code</td>
-                <td>Handles camera trigger, Bluetooth audio, button input</td>
-                <td><span class="badge badge-software">Software</span></td>
-              </tr>
-              <tr>
-                <td>11</td>
-                <td><strong>Smartphone app</strong> (React Native / Ionic)</td>
-                <td>&mdash;</td>
-                <td>Code</td>
-                <td><strong>OCR</strong> (Gemini/Tesseract.js), <strong>TTS</strong>, mode control</td>
-                <td><span class="badge badge-software">Software</span></td>
-              </tr>
-              <tr>
-                <td>12</td>
-                <td><strong>OCR engine</strong> (Gemini API priority, fallback Tesseract.js/EasyOCR)</td>
-                <td>&mdash;</td>
-                <td>Code</td>
-                <td>Extracts text from images</td>
-                <td><span class="badge badge-software">Software</span></td>
-              </tr>
-              <tr>
-                <td>13</td>
-                <td><strong>TTS engine</strong> (Web Speech API / native TTS)</td>
-                <td>&mdash;</td>
-                <td>Code</td>
-                <td>Converts text into speech</td>
-                <td><span class="badge badge-software">Software</span></td>
-              </tr>
-              <tr>
-                <td>14</td>
-                <td><strong>Bluetooth A2DP/SBC stack</strong></td>
-                <td>&mdash;</td>
-                <td>Code</td>
-                <td>Audio streaming protocol</td>
-                <td><span class="badge badge-software">Software</span></td>
+                <td><strong>I2S Audio Amplifier</strong></td>
+                <td>1</td>
+                <td>12.00</td>
+                <td>12.00</td>
+                <td>Convert text data to speech</td>
               </tr>
               <tr class="table-total-row">
-                <td colspan="2">Total</td>
-                <td>72.41</td>
-                <td colspan="3"></td>
+                <td colspan="4">Total</td>
+                <td>112.60</td>
+                <td colspan="1"></td>
               </tr>
             </tbody>
           </table>
@@ -184,10 +148,68 @@
       <section class="content-section" id="system-flowchart">
         <h2>System Flowchart</h2>
         <p>The logical flow of the system, from continuous <strong>environmental scanning</strong> via the camera module to data processing and alert activation. The system uses a <strong>microcontroller</strong> to analyze obstacle distances in real-time and capture images for <strong>AI text-recognition</strong>.</p>
-        <div class="img-container">
-          <img src="flowchart.png" alt="System Flowchart" loading="lazy" onerror="this.style.display='none'">
+        <div class="flowchart-wrapper">
+          <div class="mermaid-container">
+            <div class="mermaid">
+              flowchart TD
+                A["🔌 Power on (switch)"] --> B["🕹️ Select mode (switch)"]
+                B --> C["Object recognition"]
+                B --> D["Text recognition"]
+                C --> E["📷 Capture Image"]
+                D --> E
+                E --> F["📡 Microcontroller WiFi on same network as app"]
+                F --> G["🤖 App NVIDIA AI processes image"]
+                G --> H{"Image received?"}
+                H -- "No" --> B
+                H -- "Yes" --> I["📝 App sends text Result / OCR text output"]
+                I --> J["🔊 I2S module Text-to-speech conversion"]
+                J --> K["📥 Microcontroller Receives audio signal"]
+                K --> L["🔈 Speaker output"]
+                L --> M{"User gives audio feedback?"}
+                M -- "No" --> B
+                M -- "Yes" --> N["🎤 Audio Input by User Microphone via app"]
+                N --> O["🤖 App NVIDIA AI Processes audio feedback"]
+                O --> P["🔊 I2S Module Audio signal conversion"]
+                P --> Q["📥 Microcontroller Receives audio signal"]
+                Q --> R["🔈 Speaker Output"]
+                R --> B
+            </div>
+          </div>
+          <aside id="explanation-panel" class="flowchart-details" aria-live="polite">
+            <div class="flowchart-details__header">
+              <span class="flowchart-details__icon">💡</span>
+              <h3 class="flowchart-details__title">How it works</h3>
+            </div>
+            <p class="flowchart-details__body flowchart-details__placeholder">Click any process block in the flowchart to see what it does.</p>
+            <button type="button" class="flowchart-details__close" aria-label="Clear selection">&times;</button>
+          </aside>
         </div>
       </section>
+
+      <script>
+        mermaid.initialize({
+          startOnLoad: true,
+          securityLevel: 'loose',
+          theme: 'base',
+          themeVariables: {
+            primaryColor: '#10b981',
+            primaryTextColor: '#fff',
+            primaryBorderColor: '#059669',
+            lineColor: '#647d8e',
+            secondaryColor: '#f4faf7',
+            tertiaryColor: '#ecfdf5',
+            fontFamily: 'DM Sans, sans-serif',
+            fontSize: '14px'
+          },
+          flowchart: {
+            htmlLabels: true,
+            curve: 'basis',
+            padding: 32,
+            nodeSpacing: 50,
+            rankSpacing: 70
+          }
+        });
+      </script>
 
       <section class="content-section" id="design-sketch">
         <h2>Design Sketch</h2>
@@ -201,7 +223,7 @@
         <h2>Circuit Diagram</h2>
         <p>The hardware architecture leverages a robust <strong>ESP32-S3 microcontroller</strong> capable of local processing and <strong>Bluetooth communication</strong>, interconnected with the <strong>OV5640 camera sensor</strong>, distance sensors, and the <strong>PAM8403 audio amplifier</strong> module.</p>
         <div class="img-container">
-          <img src="../pagedesignrequirement/circuit diagram1.png" alt="Circuit Diagram" loading="lazy" onerror="this.style.display='none'">
+          <img src="circuitdiagram.png" alt="Circuit Diagram" class="circuit-diagram-img" loading="lazy" onerror="this.style.display='none'">
         </div>
       </section>
 

@@ -11,8 +11,8 @@ Part No.	Enablers / Components 	Estimated Cost (RM)	Manufacturing Process	Functi
 8	PCB/perfboard + wiring	4.39	Purchase	Mounting and connections	Hardware
 9	DC3V Mini Vibration Motors 10000rpm 1030 Flat Coin	4.00	Purchase	Vibrations	Hardware
 10	ESP32‑S3 firmware (Arduino IDE / ESP‑IDF)	-	To code	Handles camera trigger, Bluetooth audio, button input	Software
-11	Smartphone app (JS framework: React Native/Ionic)	-	To code	OCR (Gemini/Tesseract.js), TTS, mode control	Software
-12	OCR engine (Gemini API priority, fallback Tesseract.js/EasyOCR)	-	To code	Extracts text from images	Software
+11	Smartphone app (JS framework: React Native/Ionic)	-	To code	NVIDIA AI-powered vision processing, TTS, mode control	Software
+12	OCR engine (NVIDIA AI cloud priority, fallback Tesseract.js)	-	To code	Extracts text from images	Software
 13	TTS engine (Web Speech API / native TTS)	-	To code	Converts text into speech	Software
 14	Bluetooth A2DP/SBC stack	-	To code	Audio streaming protocol	Software
 	Total	72.41			
